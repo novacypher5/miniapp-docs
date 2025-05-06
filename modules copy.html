@@ -1,0 +1,1071 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>backend &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">accounts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="challenges.html">challenges package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">core package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service.html">service package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">backend</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules copy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="backend">
+<h1>backend<a class="headerlink" href="#backend" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">accounts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.migrations.html">accounts.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0001_initial">accounts.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0002_alter_bonus_user">accounts.migrations.0002_alter_bonus_user module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0003_user_first_login">accounts.migrations.0003_user_first_login module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0004_alter_transaction_type_of_deposit">accounts.migrations.0004_alter_transaction_type_of_deposit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0005_userprofile">accounts.migrations.0005_userprofile module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0006_remove_user_tg_username_and_more">accounts.migrations.0006_remove_user_tg_username_and_more module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.admin">accounts.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.admin.BonusAdmin"><code class="docutils literal notranslate"><span class="pre">BonusAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">BonusAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusAdmin.media"><code class="docutils literal notranslate"><span class="pre">BonusAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusAdmin.model"><code class="docutils literal notranslate"><span class="pre">BonusAdmin.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.fieldsets"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.fieldsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.inlines"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.inlines</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.list_editable"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.list_editable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.media"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.ordering"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.ordering</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.BonusRuleAdmin.search_fields"><code class="docutils literal notranslate"><span class="pre">BonusRuleAdmin.search_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.admin.TgUserAdmin"><code class="docutils literal notranslate"><span class="pre">TgUserAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.TgUserAdmin.get_readonly_fields"><code class="docutils literal notranslate"><span class="pre">TgUserAdmin.get_readonly_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.TgUserAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">TgUserAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.TgUserAdmin.media"><code class="docutils literal notranslate"><span class="pre">TgUserAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.TgUserAdmin.save_model"><code class="docutils literal notranslate"><span class="pre">TgUserAdmin.save_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.TgUserAdmin.search_fields"><code class="docutils literal notranslate"><span class="pre">TgUserAdmin.search_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.admin.TransactionAdmin"><code class="docutils literal notranslate"><span class="pre">TransactionAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.admin.TransactionAdmin.media"><code class="docutils literal notranslate"><span class="pre">TransactionAdmin.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.api">accounts.api module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.add_initial_bonus"><code class="docutils literal notranslate"><span class="pre">add_initial_bonus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.authenticate"><code class="docutils literal notranslate"><span class="pre">authenticate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.connect_wallet_to_user"><code class="docutils literal notranslate"><span class="pre">connect_wallet_to_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.create_user"><code class="docutils literal notranslate"><span class="pre">create_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.get_leaderboard_info"><code class="docutils literal notranslate"><span class="pre">get_leaderboard_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.get_user_leaderboard_info"><code class="docutils literal notranslate"><span class="pre">get_user_leaderboard_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.get_user_referrals"><code class="docutils literal notranslate"><span class="pre">get_user_referrals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.me"><code class="docutils literal notranslate"><span class="pre">me()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.retrieve_jwt_token"><code class="docutils literal notranslate"><span class="pre">retrieve_jwt_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.set_first_login"><code class="docutils literal notranslate"><span class="pre">set_first_login()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.transactions_history"><code class="docutils literal notranslate"><span class="pre">transactions_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.update_ref_level"><code class="docutils literal notranslate"><span class="pre">update_ref_level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.validate"><code class="docutils literal notranslate"><span class="pre">validate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.api.withdraw_points"><code class="docutils literal notranslate"><span class="pre">withdraw_points()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.apps">accounts.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.apps.AccountsConfig"><code class="docutils literal notranslate"><span class="pre">AccountsConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.apps.AccountsConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">AccountsConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.apps.AccountsConfig.name"><code class="docutils literal notranslate"><span class="pre">AccountsConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.models">accounts.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.Bonus"><code class="docutils literal notranslate"><span class="pre">Bonus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Bonus.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Bonus.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.bonus_rule"><code class="docutils literal notranslate"><span class="pre">Bonus.bonus_rule</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.bonus_rule_id"><code class="docutils literal notranslate"><span class="pre">Bonus.bonus_rule_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.created_at"><code class="docutils literal notranslate"><span class="pre">Bonus.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Bonus.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Bonus.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.id"><code class="docutils literal notranslate"><span class="pre">Bonus.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.objects"><code class="docutils literal notranslate"><span class="pre">Bonus.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.user"><code class="docutils literal notranslate"><span class="pre">Bonus.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Bonus.user_id"><code class="docutils literal notranslate"><span class="pre">Bonus.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.BonusRule"><code class="docutils literal notranslate"><span class="pre">BonusRule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.BonusRule.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">BonusRule.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.BonusRule.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">BonusRule.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.BonusRule.bonus"><code class="docutils literal notranslate"><span class="pre">BonusRule.bonus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.BonusRule.bonus_percentage"><code class="docutils literal notranslate"><span class="pre">BonusRule.bonus_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.BonusRule.objects"><code class="docutils literal notranslate"><span class="pre">BonusRule.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.BonusRule.rank"><code class="docutils literal notranslate"><span class="pre">BonusRule.rank</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.DepositType"><code class="docutils literal notranslate"><span class="pre">DepositType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.DepositType.CHALLENGE"><code class="docutils literal notranslate"><span class="pre">DepositType.CHALLENGE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.DepositType.REFERRAL"><code class="docutils literal notranslate"><span class="pre">DepositType.REFERRAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.DepositType.TASK"><code class="docutils literal notranslate"><span class="pre">DepositType.TASK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.DepositType.VALIDATION"><code class="docutils literal notranslate"><span class="pre">DepositType.VALIDATION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.ReferralLevels"><code class="docutils literal notranslate"><span class="pre">ReferralLevels</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.ReferralLevels.FIRST"><code class="docutils literal notranslate"><span class="pre">ReferralLevels.FIRST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.ReferralLevels.SECOND"><code class="docutils literal notranslate"><span class="pre">ReferralLevels.SECOND</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.ReferralLevels.THIRD"><code class="docutils literal notranslate"><span class="pre">ReferralLevels.THIRD</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.Transaction"><code class="docutils literal notranslate"><span class="pre">Transaction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Transaction.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Transaction.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.clean"><code class="docutils literal notranslate"><span class="pre">Transaction.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.date_and_time"><code class="docutils literal notranslate"><span class="pre">Transaction.date_and_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.from_user"><code class="docutils literal notranslate"><span class="pre">Transaction.from_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.from_user_id"><code class="docutils literal notranslate"><span class="pre">Transaction.from_user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.get_internal_type_display"><code class="docutils literal notranslate"><span class="pre">Transaction.get_internal_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.get_next_by_date_and_time"><code class="docutils literal notranslate"><span class="pre">Transaction.get_next_by_date_and_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.get_previous_by_date_and_time"><code class="docutils literal notranslate"><span class="pre">Transaction.get_previous_by_date_and_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.get_status_display"><code class="docutils literal notranslate"><span class="pre">Transaction.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.get_type_of_deposit_display"><code class="docutils literal notranslate"><span class="pre">Transaction.get_type_of_deposit_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.id"><code class="docutils literal notranslate"><span class="pre">Transaction.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.internal_type"><code class="docutils literal notranslate"><span class="pre">Transaction.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.objects"><code class="docutils literal notranslate"><span class="pre">Transaction.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.status"><code class="docutils literal notranslate"><span class="pre">Transaction.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.sum_of_transaction"><code class="docutils literal notranslate"><span class="pre">Transaction.sum_of_transaction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.type_of_deposit"><code class="docutils literal notranslate"><span class="pre">Transaction.type_of_deposit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.user"><code class="docutils literal notranslate"><span class="pre">Transaction.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Transaction.user_id"><code class="docutils literal notranslate"><span class="pre">Transaction.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.TransactionStatus"><code class="docutils literal notranslate"><span class="pre">TransactionStatus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.TransactionStatus.DECLINED"><code class="docutils literal notranslate"><span class="pre">TransactionStatus.DECLINED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.TransactionStatus.SUCCESSFUL"><code class="docutils literal notranslate"><span class="pre">TransactionStatus.SUCCESSFUL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.TransactionStatus.WIP"><code class="docutils literal notranslate"><span class="pre">TransactionStatus.WIP</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.TransactionType"><code class="docutils literal notranslate"><span class="pre">TransactionType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.TransactionType.DEPOSIT"><code class="docutils literal notranslate"><span class="pre">TransactionType.DEPOSIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.TransactionType.WITHDRAW"><code class="docutils literal notranslate"><span class="pre">TransactionType.WITHDRAW</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">User.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">User.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.balance"><code class="docutils literal notranslate"><span class="pre">User.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.bonus_set"><code class="docutils literal notranslate"><span class="pre">User.bonus_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.calculate_bonus"><code class="docutils literal notranslate"><span class="pre">User.calculate_bonus()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.challengecompletion_set"><code class="docutils literal notranslate"><span class="pre">User.challengecompletion_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.completion_set"><code class="docutils literal notranslate"><span class="pre">User.completion_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.first_login"><code class="docutils literal notranslate"><span class="pre">User.first_login</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.from_user"><code class="docutils literal notranslate"><span class="pre">User.from_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_current_bonus"><code class="docutils literal notranslate"><span class="pre">User.get_current_bonus()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_rank"><code class="docutils literal notranslate"><span class="pre">User.get_rank()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_ref_sum_from_user"><code class="docutils literal notranslate"><span class="pre">User.get_ref_sum_from_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_referral_level_display"><code class="docutils literal notranslate"><span class="pre">User.get_referral_level_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.is_premium"><code class="docutils literal notranslate"><span class="pre">User.is_premium</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.language_code"><code class="docutils literal notranslate"><span class="pre">User.language_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.name"><code class="docutils literal notranslate"><span class="pre">User.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.objects"><code class="docutils literal notranslate"><span class="pre">User.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.photo"><code class="docutils literal notranslate"><span class="pre">User.photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.raterecord_set"><code class="docutils literal notranslate"><span class="pre">User.raterecord_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.referral_code"><code class="docutils literal notranslate"><span class="pre">User.referral_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.referral_earnings"><code class="docutils literal notranslate"><span class="pre">User.referral_earnings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.referral_level"><code class="docutils literal notranslate"><span class="pre">User.referral_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.referral_user"><code class="docutils literal notranslate"><span class="pre">User.referral_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.referral_user_connected"><code class="docutils literal notranslate"><span class="pre">User.referral_user_connected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.referral_user_id"><code class="docutils literal notranslate"><span class="pre">User.referral_user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.transaction_set"><code class="docutils literal notranslate"><span class="pre">User.transaction_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.userprofile"><code class="docutils literal notranslate"><span class="pre">User.userprofile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.wallet_was_connected"><code class="docutils literal notranslate"><span class="pre">User.wallet_was_connected</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.UserProfile"><code class="docutils literal notranslate"><span class="pre">UserProfile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">UserProfile.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">UserProfile.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.bio"><code class="docutils literal notranslate"><span class="pre">UserProfile.bio</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.created_at"><code class="docutils literal notranslate"><span class="pre">UserProfile.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.date_of_birth"><code class="docutils literal notranslate"><span class="pre">UserProfile.date_of_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">UserProfile.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.get_next_by_updated_at"><code class="docutils literal notranslate"><span class="pre">UserProfile.get_next_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">UserProfile.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.get_previous_by_updated_at"><code class="docutils literal notranslate"><span class="pre">UserProfile.get_previous_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.id"><code class="docutils literal notranslate"><span class="pre">UserProfile.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.is_private"><code class="docutils literal notranslate"><span class="pre">UserProfile.is_private</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.location"><code class="docutils literal notranslate"><span class="pre">UserProfile.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.objects"><code class="docutils literal notranslate"><span class="pre">UserProfile.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.profile_picture"><code class="docutils literal notranslate"><span class="pre">UserProfile.profile_picture</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.updated_at"><code class="docutils literal notranslate"><span class="pre">UserProfile.updated_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.user"><code class="docutils literal notranslate"><span class="pre">UserProfile.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.user_id"><code class="docutils literal notranslate"><span class="pre">UserProfile.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.UserProfile.website"><code class="docutils literal notranslate"><span class="pre">UserProfile.website</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.update_bonus_for_top_users"><code class="docutils literal notranslate"><span class="pre">update_bonus_for_top_users()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.pagination">accounts.pagination module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.pagination.MyPaginator"><code class="docutils literal notranslate"><span class="pre">MyPaginator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.pagination.MyPaginator.Input"><code class="docutils literal notranslate"><span class="pre">MyPaginator.Input</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.pagination.MyPaginator.Output"><code class="docutils literal notranslate"><span class="pre">MyPaginator.Output</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.pagination.MyPaginator.apaginate_queryset"><code class="docutils literal notranslate"><span class="pre">MyPaginator.apaginate_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.pagination.MyPaginator.paginate_queryset"><code class="docutils literal notranslate"><span class="pre">MyPaginator.paginate_queryset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.schemes">accounts.schemes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaIn"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaIn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaIn.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaIn.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaIn.model_config"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaIn.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaIn.model_fields"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaIn.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaIn.wallet_connect_code"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaIn.wallet_connect_code</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaOut"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaOut.balance"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaOut.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaOut.model_config"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaOut.model_fields"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ConnectWalletSchemaOut.user_id"><code class="docutils literal notranslate"><span class="pre">ConnectWalletSchemaOut.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.DetailOut"><code class="docutils literal notranslate"><span class="pre">DetailOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.DetailOut.detail"><code class="docutils literal notranslate"><span class="pre">DetailOut.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.DetailOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.DetailOut.model_config"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.DetailOut.model_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema.model_config"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema.viewer_bonus"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema.viewer_bonus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema.viewer_place"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema.viewer_place</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserInfoSchema.viewer_points"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserInfoSchema.viewer_points</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.avatar"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.avatar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.id"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.model_config"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.name"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.LeaderBoardUserSchema.points"><code class="docutils literal notranslate"><span class="pre">LeaderBoardUserSchema.points</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.ReferralListUserOut"><code class="docutils literal notranslate"><span class="pre">ReferralListUserOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ReferralListUserOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ReferralListUserOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ReferralListUserOut.model_config"><code class="docutils literal notranslate"><span class="pre">ReferralListUserOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ReferralListUserOut.model_fields"><code class="docutils literal notranslate"><span class="pre">ReferralListUserOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ReferralListUserOut.specified_referral_earnings"><code class="docutils literal notranslate"><span class="pre">ReferralListUserOut.specified_referral_earnings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.ReferralListUserOut.user"><code class="docutils literal notranslate"><span class="pre">ReferralListUserOut.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser"><code class="docutils literal notranslate"><span class="pre">TGUser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.allows_write_to_pm"><code class="docutils literal notranslate"><span class="pre">TGUser.allows_write_to_pm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.first_name"><code class="docutils literal notranslate"><span class="pre">TGUser.first_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.id"><code class="docutils literal notranslate"><span class="pre">TGUser.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.is_premium"><code class="docutils literal notranslate"><span class="pre">TGUser.is_premium</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.language_code"><code class="docutils literal notranslate"><span class="pre">TGUser.language_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.last_name"><code class="docutils literal notranslate"><span class="pre">TGUser.last_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TGUser.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.model_config"><code class="docutils literal notranslate"><span class="pre">TGUser.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.model_fields"><code class="docutils literal notranslate"><span class="pre">TGUser.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.photo_url"><code class="docutils literal notranslate"><span class="pre">TGUser.photo_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TGUser.username"><code class="docutils literal notranslate"><span class="pre">TGUser.username</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema.model_config"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema.status"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionFilterSchema.type_of_deposit"><code class="docutils literal notranslate"><span class="pre">TransactionFilterSchema.type_of_deposit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema"><code class="docutils literal notranslate"><span class="pre">TransactionSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.date_and_time"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.date_and_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.from_user"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.from_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.model_config"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.status"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.sum_of_transaction"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.sum_of_transaction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.TransactionSchema.type_of_deposit"><code class="docutils literal notranslate"><span class="pre">TransactionSchema.type_of_deposit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit"><code class="docutils literal notranslate"><span class="pre">UserInit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.id"><code class="docutils literal notranslate"><span class="pre">UserInit.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.is_premium"><code class="docutils literal notranslate"><span class="pre">UserInit.is_premium</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.language_code"><code class="docutils literal notranslate"><span class="pre">UserInit.language_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">UserInit.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.model_config"><code class="docutils literal notranslate"><span class="pre">UserInit.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.model_fields"><code class="docutils literal notranslate"><span class="pre">UserInit.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.name"><code class="docutils literal notranslate"><span class="pre">UserInit.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.referral_code"><code class="docutils literal notranslate"><span class="pre">UserInit.referral_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserInit.username"><code class="docutils literal notranslate"><span class="pre">UserInit.username</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut"><code class="docutils literal notranslate"><span class="pre">UserOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.balance"><code class="docutils literal notranslate"><span class="pre">UserOut.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.first_login"><code class="docutils literal notranslate"><span class="pre">UserOut.first_login</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.id"><code class="docutils literal notranslate"><span class="pre">UserOut.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.is_premium"><code class="docutils literal notranslate"><span class="pre">UserOut.is_premium</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.language_code"><code class="docutils literal notranslate"><span class="pre">UserOut.language_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">UserOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.model_config"><code class="docutils literal notranslate"><span class="pre">UserOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.model_fields"><code class="docutils literal notranslate"><span class="pre">UserOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.name"><code class="docutils literal notranslate"><span class="pre">UserOut.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.photo"><code class="docutils literal notranslate"><span class="pre">UserOut.photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.referral_code"><code class="docutils literal notranslate"><span class="pre">UserOut.referral_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.referral_earnings"><code class="docutils literal notranslate"><span class="pre">UserOut.referral_earnings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.referral_level"><code class="docutils literal notranslate"><span class="pre">UserOut.referral_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.wallet_connect_code"><code class="docutils literal notranslate"><span class="pre">UserOut.wallet_connect_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut.wallet_was_connected"><code class="docutils literal notranslate"><span class="pre">UserOut.wallet_was_connected</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenIn"><code class="docutils literal notranslate"><span class="pre">UserTokenIn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenIn.init_data"><code class="docutils literal notranslate"><span class="pre">UserTokenIn.init_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenIn.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">UserTokenIn.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenIn.model_config"><code class="docutils literal notranslate"><span class="pre">UserTokenIn.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenIn.model_fields"><code class="docutils literal notranslate"><span class="pre">UserTokenIn.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenOut"><code class="docutils literal notranslate"><span class="pre">UserTokenOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">UserTokenOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenOut.model_config"><code class="docutils literal notranslate"><span class="pre">UserTokenOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenOut.model_fields"><code class="docutils literal notranslate"><span class="pre">UserTokenOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.UserTokenOut.token"><code class="docutils literal notranslate"><span class="pre">UserTokenOut.token</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawSchema"><code class="docutils literal notranslate"><span class="pre">WithdrawSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">WithdrawSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawSchema.model_config"><code class="docutils literal notranslate"><span class="pre">WithdrawSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">WithdrawSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawSchema.user_ids"><code class="docutils literal notranslate"><span class="pre">WithdrawSchema.user_ids</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawWalletSchemaOut"><code class="docutils literal notranslate"><span class="pre">WithdrawWalletSchemaOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawWalletSchemaOut.balance"><code class="docutils literal notranslate"><span class="pre">WithdrawWalletSchemaOut.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawWalletSchemaOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">WithdrawWalletSchemaOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawWalletSchemaOut.model_config"><code class="docutils literal notranslate"><span class="pre">WithdrawWalletSchemaOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawWalletSchemaOut.model_fields"><code class="docutils literal notranslate"><span class="pre">WithdrawWalletSchemaOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.schemes.WithdrawWalletSchemaOut.user_id"><code class="docutils literal notranslate"><span class="pre">WithdrawWalletSchemaOut.user_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.tests">accounts.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="challenges.html">challenges package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.migrations.html">challenges.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#module-challenges.migrations.0001_initial">challenges.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#module-challenges.migrations.0002_alter_challenge_avatar">challenges.migrations.0002_alter_challenge_avatar module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#module-challenges.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.admin">challenges.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.admin.ChallengeAdmin"><code class="docutils literal notranslate"><span class="pre">ChallengeAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.admin.ChallengeAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">ChallengeAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.admin.ChallengeAdmin.media"><code class="docutils literal notranslate"><span class="pre">ChallengeAdmin.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.admin.ChallengeCompletionAdmin"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.admin.ChallengeCompletionAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.admin.ChallengeCompletionAdmin.media"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionAdmin.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.admin.TgChannelAdmin"><code class="docutils literal notranslate"><span class="pre">TgChannelAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.admin.TgChannelAdmin.media"><code class="docutils literal notranslate"><span class="pre">TgChannelAdmin.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.api">challenges.api module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.api.add_reward"><code class="docutils literal notranslate"><span class="pre">add_reward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.api.challenge_info"><code class="docutils literal notranslate"><span class="pre">challenge_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.api.challenges_complete"><code class="docutils literal notranslate"><span class="pre">challenges_complete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.api.challenges_list"><code class="docutils literal notranslate"><span class="pre">challenges_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.api.completion_by_challenge_id_info"><code class="docutils literal notranslate"><span class="pre">completion_by_challenge_id_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.apps">challenges.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.apps.ChallengesConfig"><code class="docutils literal notranslate"><span class="pre">ChallengesConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.apps.ChallengesConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ChallengesConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.apps.ChallengesConfig.name"><code class="docutils literal notranslate"><span class="pre">ChallengesConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.checker">challenges.checker module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.checker.Checker"><code class="docutils literal notranslate"><span class="pre">Checker</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.checker.Checker.check_member"><code class="docutils literal notranslate"><span class="pre">Checker.check_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.checker.Checker.req"><code class="docutils literal notranslate"><span class="pre">Checker.req()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.checker.prepare_data"><code class="docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.models">challenges.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.models.Challenge"><code class="docutils literal notranslate"><span class="pre">Challenge</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Challenge.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Challenge.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.avatar"><code class="docutils literal notranslate"><span class="pre">Challenge.avatar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.button_text"><code class="docutils literal notranslate"><span class="pre">Challenge.button_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.challengecompletion_set"><code class="docutils literal notranslate"><span class="pre">Challenge.challengecompletion_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.channel"><code class="docutils literal notranslate"><span class="pre">Challenge.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.channel_id"><code class="docutils literal notranslate"><span class="pre">Challenge.channel_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.clean"><code class="docutils literal notranslate"><span class="pre">Challenge.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.completion_limit"><code class="docutils literal notranslate"><span class="pre">Challenge.completion_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.get_internal_type_display"><code class="docutils literal notranslate"><span class="pre">Challenge.get_internal_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.get_user_challenge_status"><code class="docutils literal notranslate"><span class="pre">Challenge.get_user_challenge_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.id"><code class="docutils literal notranslate"><span class="pre">Challenge.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.imitation_timer"><code class="docutils literal notranslate"><span class="pre">Challenge.imitation_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.internal_type"><code class="docutils literal notranslate"><span class="pre">Challenge.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.objects"><code class="docutils literal notranslate"><span class="pre">Challenge.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.redirect_link"><code class="docutils literal notranslate"><span class="pre">Challenge.redirect_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.reward"><code class="docutils literal notranslate"><span class="pre">Challenge.reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.target_user_language"><code class="docutils literal notranslate"><span class="pre">Challenge.target_user_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.target_user_status"><code class="docutils literal notranslate"><span class="pre">Challenge.target_user_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.Challenge.title"><code class="docutils literal notranslate"><span class="pre">Challenge.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.can_be_claimed_in"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.can_be_claimed_in</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.challenge"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.challenge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.challenge_id"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.challenge_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.claimed"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.claimed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.id"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.objects"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.user"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeCompletion.user_id"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.models.ChallengeTypes"><code class="docutils literal notranslate"><span class="pre">ChallengeTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeTypes.IMITATION"><code class="docutils literal notranslate"><span class="pre">ChallengeTypes.IMITATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.ChallengeTypes.REAL"><code class="docutils literal notranslate"><span class="pre">ChallengeTypes.REAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.models.CompletionTypes"><code class="docutils literal notranslate"><span class="pre">CompletionTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.CompletionTypes.CLAIMED"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.CLAIMED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.CompletionTypes.IN_PROGRESS"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.IN_PROGRESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.CompletionTypes.NOT_CLAIMED"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.NOT_CLAIMED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.CompletionTypes.NOT_STARTED"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.NOT_STARTED</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.models.TgChannel"><code class="docutils literal notranslate"><span class="pre">TgChannel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.TgChannel.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">TgChannel.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.TgChannel.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">TgChannel.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.TgChannel.challenge_set"><code class="docutils literal notranslate"><span class="pre">TgChannel.challenge_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.TgChannel.id"><code class="docutils literal notranslate"><span class="pre">TgChannel.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.TgChannel.objects"><code class="docutils literal notranslate"><span class="pre">TgChannel.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.models.TgChannel.uri"><code class="docutils literal notranslate"><span class="pre">TgChannel.uri</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.schemes">challenges.schemes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.can_be_claimed_in"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.can_be_claimed_in</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.challenge"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.challenge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.claimed"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.claimed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeCompletionSchema.user"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.custom_expression"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.custom_expression()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.status"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.target_user_language"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.target_user_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeFilterSchema.target_user_status"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.target_user_status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeListSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeListSchema.challenge"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.challenge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeListSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeListSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeListSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeListSchema.status"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.avatar"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.avatar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.button_text"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.button_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.channel"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.completion_limit"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.completion_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.id"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.imitation_timer"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.imitation_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.redirect_link"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.redirect_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.reward"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.target_user_language"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.target_user_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.target_user_status"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.target_user_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChallengeSchema.title"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.ChannelSchema"><code class="docutils literal notranslate"><span class="pre">ChannelSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChannelSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChannelSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChannelSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.ChannelSchema.uri"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.uri</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.CompletionSendOut"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.CompletionSendOut.claim_prize"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.claim_prize</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.CompletionSendOut.created"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.created</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.CompletionSendOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.CompletionSendOut.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.CompletionSendOut.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="challenges.html#challenges.schemes.DetailOut"><code class="docutils literal notranslate"><span class="pre">DetailOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.DetailOut.detail"><code class="docutils literal notranslate"><span class="pre">DetailOut.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.DetailOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.DetailOut.model_config"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.html#challenges.schemes.DetailOut.model_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges.tests">challenges.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.html#module-challenges">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">core package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#module-core.api">core.api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#module-core.asgi">core.asgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#module-core.settings">core.settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#module-core.urls">core.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#module-core.wsgi">core.wsgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#module-core">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manage.html#manage.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="service.html">service package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="service.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.migrations.html">service.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.migrations.html#module-service.migrations.0001_initial">service.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.migrations.html#module-service.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service.admin">service.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.html#service.admin.AppLinksAdmin"><code class="docutils literal notranslate"><span class="pre">AppLinksAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.admin.AppLinksAdmin.media"><code class="docutils literal notranslate"><span class="pre">AppLinksAdmin.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service.api">service.api module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.html#service.api.get_links"><code class="docutils literal notranslate"><span class="pre">get_links()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service.apps">service.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.html#service.apps.ServiceConfig"><code class="docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.apps.ServiceConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.apps.ServiceConfig.name"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service.models">service.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.html#service.models.AppLinks"><code class="docutils literal notranslate"><span class="pre">AppLinks</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">AppLinks.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">AppLinks.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.android"><code class="docutils literal notranslate"><span class="pre">AppLinks.android</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.apk"><code class="docutils literal notranslate"><span class="pre">AppLinks.apk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.id"><code class="docutils literal notranslate"><span class="pre">AppLinks.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.ios"><code class="docutils literal notranslate"><span class="pre">AppLinks.ios</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.models.AppLinks.objects"><code class="docutils literal notranslate"><span class="pre">AppLinks.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service.schemes">service.schemes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.html#service.schemes.DetailOut"><code class="docutils literal notranslate"><span class="pre">DetailOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.DetailOut.detail"><code class="docutils literal notranslate"><span class="pre">DetailOut.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.DetailOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.DetailOut.model_config"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.DetailOut.model_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="service.html#service.schemes.LinksSchema"><code class="docutils literal notranslate"><span class="pre">LinksSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.LinksSchema.android"><code class="docutils literal notranslate"><span class="pre">LinksSchema.android</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.LinksSchema.apk"><code class="docutils literal notranslate"><span class="pre">LinksSchema.apk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.LinksSchema.ios"><code class="docutils literal notranslate"><span class="pre">LinksSchema.ios</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.LinksSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">LinksSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.LinksSchema.model_config"><code class="docutils literal notranslate"><span class="pre">LinksSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.html#service.schemes.LinksSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">LinksSchema.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service.tests">service.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tasks.html">tasks package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.migrations.html">tasks.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0001_initial">tasks.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0002_alter_task_example_alter_task_photo">tasks.migrations.0002_alter_task_example_alter_task_photo module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0003_raterecord_created_at">tasks.migrations.0003_raterecord_created_at module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0004_task_task_instruction_alter_task_description_and_more">tasks.migrations.0004_task_task_instruction_alter_task_description_and_more module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0005_task_start_time_alter_task_validation_limit">tasks.migrations.0005_task_start_time_alter_task_validation_limit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0006_task_task_paused_task_validation_paused">tasks.migrations.0006_task_task_paused_task_validation_paused module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0007_alter_task_reward">tasks.migrations.0007_alter_task_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations.0008_alter_task_validation_reward">tasks.migrations.0008_alter_task_validation_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.migrations.html#module-tasks.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks.admin">tasks.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.admin.CompletionAdmin"><code class="docutils literal notranslate"><span class="pre">CompletionAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionAdmin.get_file_url"><code class="docutils literal notranslate"><span class="pre">CompletionAdmin.get_file_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionAdmin.inlines"><code class="docutils literal notranslate"><span class="pre">CompletionAdmin.inlines</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">CompletionAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionAdmin.media"><code class="docutils literal notranslate"><span class="pre">CompletionAdmin.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.accept_completion"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.accept_completion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.actions"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.decline_completion"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.decline_completion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.get_file_url"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.get_file_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.get_queryset"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.has_add_permission"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.has_add_permission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.media"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.transaction_creation_and_adding"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.transaction_creation_and_adding()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.CompletionForValidationAdmin.validation_status"><code class="docutils literal notranslate"><span class="pre">CompletionForValidationAdmin.validation_status()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.admin.MyFileAdmin"><code class="docutils literal notranslate"><span class="pre">MyFileAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.MyFileAdmin.get_file_url"><code class="docutils literal notranslate"><span class="pre">MyFileAdmin.get_file_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.MyFileAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">MyFileAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.MyFileAdmin.media"><code class="docutils literal notranslate"><span class="pre">MyFileAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.MyFileAdmin.readonly_fields"><code class="docutils literal notranslate"><span class="pre">MyFileAdmin.readonly_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.admin.RateRecordAdmin"><code class="docutils literal notranslate"><span class="pre">RateRecordAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.RateRecordAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">RateRecordAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.RateRecordAdmin.media"><code class="docutils literal notranslate"><span class="pre">RateRecordAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.RateRecordAdmin.model"><code class="docutils literal notranslate"><span class="pre">RateRecordAdmin.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin"><code class="docutils literal notranslate"><span class="pre">TaskAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.Media"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.Media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.actions"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.continue_task"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.continue_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.continue_validation"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.continue_validation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.get_completion_counter"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.get_completion_counter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.get_task_status"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.get_task_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.list_filter"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.list_filter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.media"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.pause_task"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.pause_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.admin.TaskAdmin.pause_validation"><code class="docutils literal notranslate"><span class="pre">TaskAdmin.pause_validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks.api">tasks.api module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.cancel_completion"><code class="docutils literal notranslate"><span class="pre">cancel_completion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.get_completion_info"><code class="docutils literal notranslate"><span class="pre">get_completion_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.get_completion_to_validate"><code class="docutils literal notranslate"><span class="pre">get_completion_to_validate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.get_list_of_completions"><code class="docutils literal notranslate"><span class="pre">get_list_of_completions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.get_list_of_tasks"><code class="docutils literal notranslate"><span class="pre">get_list_of_tasks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.get_list_of_tasks_to_validate"><code class="docutils literal notranslate"><span class="pre">get_list_of_tasks_to_validate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.get_task_info"><code class="docutils literal notranslate"><span class="pre">get_task_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.send_completion"><code class="docutils literal notranslate"><span class="pre">send_completion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.sign_s3_file"><code class="docutils literal notranslate"><span class="pre">sign_s3_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.start_completion"><code class="docutils literal notranslate"><span class="pre">start_completion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.api.validate"><code class="docutils literal notranslate"><span class="pre">validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks.apps">tasks.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.apps.TasksConfig"><code class="docutils literal notranslate"><span class="pre">TasksConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.apps.TasksConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">TasksConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.apps.TasksConfig.name"><code class="docutils literal notranslate"><span class="pre">TasksConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks.models">tasks.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.Completion"><code class="docutils literal notranslate"><span class="pre">Completion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Completion.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Completion.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.completion_date_and_time"><code class="docutils literal notranslate"><span class="pre">Completion.completion_date_and_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.completion_rate"><code class="docutils literal notranslate"><span class="pre">Completion.completion_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.file"><code class="docutils literal notranslate"><span class="pre">Completion.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.file_id"><code class="docutils literal notranslate"><span class="pre">Completion.file_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.get_status_display"><code class="docutils literal notranslate"><span class="pre">Completion.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.id"><code class="docutils literal notranslate"><span class="pre">Completion.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.objects"><code class="docutils literal notranslate"><span class="pre">Completion.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.score"><code class="docutils literal notranslate"><span class="pre">Completion.score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.sent_for_manual_validation"><code class="docutils literal notranslate"><span class="pre">Completion.sent_for_manual_validation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.status"><code class="docutils literal notranslate"><span class="pre">Completion.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.task"><code class="docutils literal notranslate"><span class="pre">Completion.task</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.task_id"><code class="docutils literal notranslate"><span class="pre">Completion.task_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.user"><code class="docutils literal notranslate"><span class="pre">Completion.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.user_id"><code class="docutils literal notranslate"><span class="pre">Completion.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Completion.when_sent_for_validation"><code class="docutils literal notranslate"><span class="pre">Completion.when_sent_for_validation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.CompletionForValidation"><code class="docutils literal notranslate"><span class="pre">CompletionForValidation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.CompletionForValidation.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">CompletionForValidation.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.CompletionForValidation.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">CompletionForValidation.MultipleObjectsReturned</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.MyFile"><code class="docutils literal notranslate"><span class="pre">MyFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">MyFile.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">MyFile.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.completion"><code class="docutils literal notranslate"><span class="pre">MyFile.completion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.file_type"><code class="docutils literal notranslate"><span class="pre">MyFile.file_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.file_uuid"><code class="docutils literal notranslate"><span class="pre">MyFile.file_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.id"><code class="docutils literal notranslate"><span class="pre">MyFile.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.is_valid"><code class="docutils literal notranslate"><span class="pre">MyFile.is_valid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.objects"><code class="docutils literal notranslate"><span class="pre">MyFile.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.original_file_name"><code class="docutils literal notranslate"><span class="pre">MyFile.original_file_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.save"><code class="docutils literal notranslate"><span class="pre">MyFile.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.upload_finished_at"><code class="docutils literal notranslate"><span class="pre">MyFile.upload_finished_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.MyFile.url"><code class="docutils literal notranslate"><span class="pre">MyFile.url</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.RateRecord"><code class="docutils literal notranslate"><span class="pre">RateRecord</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">RateRecord.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">RateRecord.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.completion"><code class="docutils literal notranslate"><span class="pre">RateRecord.completion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.completion_id"><code class="docutils literal notranslate"><span class="pre">RateRecord.completion_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.created_at"><code class="docutils literal notranslate"><span class="pre">RateRecord.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">RateRecord.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">RateRecord.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.id"><code class="docutils literal notranslate"><span class="pre">RateRecord.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.objects"><code class="docutils literal notranslate"><span class="pre">RateRecord.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.score"><code class="docutils literal notranslate"><span class="pre">RateRecord.score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.validator"><code class="docutils literal notranslate"><span class="pre">RateRecord.validator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.RateRecord.validator_id"><code class="docutils literal notranslate"><span class="pre">RateRecord.validator_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Status.ACCEPTED"><code class="docutils literal notranslate"><span class="pre">Status.ACCEPTED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Status.DECLINED"><code class="docutils literal notranslate"><span class="pre">Status.DECLINED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Status.HOLD"><code class="docutils literal notranslate"><span class="pre">Status.HOLD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Status.IN_REVIEW"><code class="docutils literal notranslate"><span class="pre">Status.IN_REVIEW</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.Task"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Task.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Task.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.audio_text"><code class="docutils literal notranslate"><span class="pre">Task.audio_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.completion_set"><code class="docutils literal notranslate"><span class="pre">Task.completion_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.count_completions"><code class="docutils literal notranslate"><span class="pre">Task.count_completions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.description"><code class="docutils literal notranslate"><span class="pre">Task.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.example"><code class="docutils literal notranslate"><span class="pre">Task.example</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.get_internal_type_display"><code class="docutils literal notranslate"><span class="pre">Task.get_internal_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.get_status"><code class="docutils literal notranslate"><span class="pre">Task.get_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.get_validation_pool_without_current_user"><code class="docutils literal notranslate"><span class="pre">Task.get_validation_pool_without_current_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.id"><code class="docutils literal notranslate"><span class="pre">Task.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.internal_type"><code class="docutils literal notranslate"><span class="pre">Task.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.is_suitable_to_be_validated"><code class="docutils literal notranslate"><span class="pre">Task.is_suitable_to_be_validated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.limit_audio_length"><code class="docutils literal notranslate"><span class="pre">Task.limit_audio_length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.limit_completions"><code class="docutils literal notranslate"><span class="pre">Task.limit_completions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.limit_file_size"><code class="docutils literal notranslate"><span class="pre">Task.limit_file_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.limit_video_length"><code class="docutils literal notranslate"><span class="pre">Task.limit_video_length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.objects"><code class="docutils literal notranslate"><span class="pre">Task.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.photo"><code class="docutils literal notranslate"><span class="pre">Task.photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.reward"><code class="docutils literal notranslate"><span class="pre">Task.reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.start_time"><code class="docutils literal notranslate"><span class="pre">Task.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.task_instruction"><code class="docutils literal notranslate"><span class="pre">Task.task_instruction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.task_paused"><code class="docutils literal notranslate"><span class="pre">Task.task_paused</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.text"><code class="docutils literal notranslate"><span class="pre">Task.text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.time_to_complete"><code class="docutils literal notranslate"><span class="pre">Task.time_to_complete</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.title"><code class="docutils literal notranslate"><span class="pre">Task.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.validation_limit"><code class="docutils literal notranslate"><span class="pre">Task.validation_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.validation_paused"><code class="docutils literal notranslate"><span class="pre">Task.validation_paused</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.validation_percent"><code class="docutils literal notranslate"><span class="pre">Task.validation_percent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.validation_reward"><code class="docutils literal notranslate"><span class="pre">Task.validation_reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.Task.when_was_sent_to_validation"><code class="docutils literal notranslate"><span class="pre">Task.when_was_sent_to_validation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.TaskTypes"><code class="docutils literal notranslate"><span class="pre">TaskTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.TaskTypes.AUDIO"><code class="docutils literal notranslate"><span class="pre">TaskTypes.AUDIO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.TaskTypes.PHOTO"><code class="docutils literal notranslate"><span class="pre">TaskTypes.PHOTO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.models.TaskTypes.VIDEO"><code class="docutils literal notranslate"><span class="pre">TaskTypes.VIDEO</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.exempt_zero"><code class="docutils literal notranslate"><span class="pre">exempt_zero()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.validate_example_file_extension"><code class="docutils literal notranslate"><span class="pre">validate_example_file_extension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.validate_pdf_file_extension"><code class="docutils literal notranslate"><span class="pre">validate_pdf_file_extension()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.models.validate_photo_file_extension"><code class="docutils literal notranslate"><span class="pre">validate_photo_file_extension()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks.schemes">tasks.schemes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema.custom_expression"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema.custom_expression()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema.status"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionFilterSchema.task_type"><code class="docutils literal notranslate"><span class="pre">CompletionFilterSchema.task_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionHistoryOut"><code class="docutils literal notranslate"><span class="pre">CompletionHistoryOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionHistoryOut.completion"><code class="docutils literal notranslate"><span class="pre">CompletionHistoryOut.completion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionHistoryOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionHistoryOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionHistoryOut.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionHistoryOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionHistoryOut.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionHistoryOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionHistoryOut.task_type"><code class="docutils literal notranslate"><span class="pre">CompletionHistoryOut.task_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut"><code class="docutils literal notranslate"><span class="pre">CompletionOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.completion_date_and_time"><code class="docutils literal notranslate"><span class="pre">CompletionOut.completion_date_and_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.file"><code class="docutils literal notranslate"><span class="pre">CompletionOut.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.id"><code class="docutils literal notranslate"><span class="pre">CompletionOut.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.score"><code class="docutils literal notranslate"><span class="pre">CompletionOut.score</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.status"><code class="docutils literal notranslate"><span class="pre">CompletionOut.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.task"><code class="docutils literal notranslate"><span class="pre">CompletionOut.task</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionOut.user"><code class="docutils literal notranslate"><span class="pre">CompletionOut.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionSendIn"><code class="docutils literal notranslate"><span class="pre">CompletionSendIn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionSendIn.file_uuid"><code class="docutils literal notranslate"><span class="pre">CompletionSendIn.file_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionSendIn.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionSendIn.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionSendIn.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionSendIn.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionSendIn.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionSendIn.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionStartIn"><code class="docutils literal notranslate"><span class="pre">CompletionStartIn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionStartIn.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionStartIn.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionStartIn.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionStartIn.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionStartIn.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionStartIn.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionStartIn.task_id"><code class="docutils literal notranslate"><span class="pre">CompletionStartIn.task_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionValidationIn"><code class="docutils literal notranslate"><span class="pre">CompletionValidationIn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionValidationIn.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionValidationIn.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionValidationIn.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionValidationIn.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionValidationIn.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionValidationIn.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.CompletionValidationIn.score"><code class="docutils literal notranslate"><span class="pre">CompletionValidationIn.score</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.DetailOut"><code class="docutils literal notranslate"><span class="pre">DetailOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.DetailOut.detail"><code class="docutils literal notranslate"><span class="pre">DetailOut.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.DetailOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.DetailOut.model_config"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.DetailOut.model_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn"><code class="docutils literal notranslate"><span class="pre">FileIn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn.completion_id"><code class="docutils literal notranslate"><span class="pre">FileIn.completion_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn.file_name"><code class="docutils literal notranslate"><span class="pre">FileIn.file_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn.file_type"><code class="docutils literal notranslate"><span class="pre">FileIn.file_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">FileIn.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn.model_config"><code class="docutils literal notranslate"><span class="pre">FileIn.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileIn.model_fields"><code class="docutils literal notranslate"><span class="pre">FileIn.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut"><code class="docutils literal notranslate"><span class="pre">FileOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.file_type"><code class="docutils literal notranslate"><span class="pre">FileOut.file_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.file_uuid"><code class="docutils literal notranslate"><span class="pre">FileOut.file_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">FileOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.model_config"><code class="docutils literal notranslate"><span class="pre">FileOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.model_fields"><code class="docutils literal notranslate"><span class="pre">FileOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.original_file_name"><code class="docutils literal notranslate"><span class="pre">FileOut.original_file_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.upload_finished_at"><code class="docutils literal notranslate"><span class="pre">FileOut.upload_finished_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOut.url"><code class="docutils literal notranslate"><span class="pre">FileOut.url</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS"><code class="docutils literal notranslate"><span class="pre">FileOutAWS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS.file_uuid"><code class="docutils literal notranslate"><span class="pre">FileOutAWS.file_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">FileOutAWS.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS.model_config"><code class="docutils literal notranslate"><span class="pre">FileOutAWS.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS.model_fields"><code class="docutils literal notranslate"><span class="pre">FileOutAWS.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS.presigned_url"><code class="docutils literal notranslate"><span class="pre">FileOutAWS.presigned_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.FileOutAWS.url"><code class="docutils literal notranslate"><span class="pre">FileOutAWS.url</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.TaskFilterSchema"><code class="docutils literal notranslate"><span class="pre">TaskFilterSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskFilterSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">TaskFilterSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskFilterSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TaskFilterSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskFilterSchema.model_config"><code class="docutils literal notranslate"><span class="pre">TaskFilterSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskFilterSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">TaskFilterSchema.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut"><code class="docutils literal notranslate"><span class="pre">TaskOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.audio_text"><code class="docutils literal notranslate"><span class="pre">TaskOut.audio_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.description"><code class="docutils literal notranslate"><span class="pre">TaskOut.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.example"><code class="docutils literal notranslate"><span class="pre">TaskOut.example</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.id"><code class="docutils literal notranslate"><span class="pre">TaskOut.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.internal_type"><code class="docutils literal notranslate"><span class="pre">TaskOut.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.limit_audio_length"><code class="docutils literal notranslate"><span class="pre">TaskOut.limit_audio_length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.limit_completions"><code class="docutils literal notranslate"><span class="pre">TaskOut.limit_completions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.limit_file_size"><code class="docutils literal notranslate"><span class="pre">TaskOut.limit_file_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.limit_video_length"><code class="docutils literal notranslate"><span class="pre">TaskOut.limit_video_length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">TaskOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.model_config"><code class="docutils literal notranslate"><span class="pre">TaskOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.model_fields"><code class="docutils literal notranslate"><span class="pre">TaskOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.photo"><code class="docutils literal notranslate"><span class="pre">TaskOut.photo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.reward"><code class="docutils literal notranslate"><span class="pre">TaskOut.reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.task_instruction"><code class="docutils literal notranslate"><span class="pre">TaskOut.task_instruction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.text"><code class="docutils literal notranslate"><span class="pre">TaskOut.text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.time_to_complete"><code class="docutils literal notranslate"><span class="pre">TaskOut.time_to_complete</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.title"><code class="docutils literal notranslate"><span class="pre">TaskOut.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.validation_percent"><code class="docutils literal notranslate"><span class="pre">TaskOut.validation_percent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.TaskOut.when_was_sent_to_validation"><code class="docutils literal notranslate"><span class="pre">TaskOut.when_was_sent_to_validation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html#tasks.schemes.ValidationListTaskOut"><code class="docutils literal notranslate"><span class="pre">ValidationListTaskOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.ValidationListTaskOut.available"><code class="docutils literal notranslate"><span class="pre">ValidationListTaskOut.available</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.ValidationListTaskOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ValidationListTaskOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.ValidationListTaskOut.model_config"><code class="docutils literal notranslate"><span class="pre">ValidationListTaskOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.ValidationListTaskOut.model_fields"><code class="docutils literal notranslate"><span class="pre">ValidationListTaskOut.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tasks.html#tasks.schemes.ValidationListTaskOut.task"><code class="docutils literal notranslate"><span class="pre">ValidationListTaskOut.task</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks.tests">tasks.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html#module-tasks">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>accounts.schemes &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">accounts.schemes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for accounts.schemes</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">ninja</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">FilterSchema</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Annotated</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BeforeValidator</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">CommaList</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span>
+    <span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">],</span>
+    <span class="n">BeforeValidator</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="k">if</span> <span class="n">v</span><span class="p">]),</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="UserInit">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.UserInit">[docs]</a>
+<span class="k">class</span> <span class="nc">UserInit</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">is_premium</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">language_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span>
+    <span class="n">referral_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="UserOut">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.UserOut">[docs]</a>
+<span class="k">class</span> <span class="nc">UserOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">photo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">balance</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">is_premium</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">language_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span>
+    <span class="n">referral_code</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span>
+    <span class="n">wallet_connect_code</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span>
+    <span class="n">wallet_was_connected</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">referral_earnings</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">referral_level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">first_login</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="ReferralListUserOut">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.ReferralListUserOut">[docs]</a>
+<span class="k">class</span> <span class="nc">ReferralListUserOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">user</span><span class="p">:</span> <span class="n">UserOut</span>
+    <span class="n">specified_referral_earnings</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="LeaderBoardUserSchema">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.LeaderBoardUserSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">LeaderBoardUserSchema</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">avatar</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">points</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="LeaderBoardUserInfoSchema">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.LeaderBoardUserInfoSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">LeaderBoardUserInfoSchema</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">viewer_points</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">viewer_place</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">viewer_bonus</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="TGUser">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.TGUser">[docs]</a>
+<span class="k">class</span> <span class="nc">TGUser</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">first_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">last_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">language_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">is_premium</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">allows_write_to_pm</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">photo_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="UserTokenIn">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.UserTokenIn">[docs]</a>
+<span class="k">class</span> <span class="nc">UserTokenIn</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">init_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">examples</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;query_id=AAFGtpsbAAAAAEa2mxvOzSfg&amp;user=%7B</span><span class="si">%22i</span><span class="s2">d</span><span class="si">%22%</span><span class="s2">3A463189574%2C</span><span class="si">%22f</span><span class="s2">irst_name</span><span class="si">%22%</span><span class="s2">3A%22yasuhiro.</span><span class="si">%22%</span><span class="s2">2C</span><span class="si">%22la</span><span class="s2">st_name</span><span class="si">%22%</span><span class="s2">3A</span><span class="si">%22%</span><span class="s2">22%2C</span><span class="si">%22u</span><span class="s2">sername</span><span class="si">%22%</span><span class="s2">3A%22yasuhiro_h</span><span class="si">%22%</span><span class="s2">2C</span><span class="si">%22la</span><span class="s2">nguage_code</span><span class="si">%22%</span><span class="s2">3A</span><span class="si">%22r</span><span class="s2">u</span><span class="si">%22%</span><span class="s2">2C</span><span class="si">%22i</span><span class="s2">s_premium</span><span class="si">%22%</span><span class="s2">3Atrue%2C</span><span class="si">%22a</span><span class="s2">llows_write_to_pm</span><span class="si">%22%</span><span class="s2">3Atrue%7D&amp;auth_date=1731360200&amp;hash=2528e6d5644eaac86f0689a4dd22ceb640392e76944e4eb5dbba9a77db175e98&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Should be taken from TG, usually goes with every request in mini app. Must be a safe version to parse successfully!&quot;</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="UserTokenOut">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.UserTokenOut">[docs]</a>
+<span class="k">class</span> <span class="nc">UserTokenOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">examples</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzE0MjgwODUsInVzZXIiOjQ2MzE4OTU3NH0.vjI7A-Mc5wOSi9ZlZ8H9cqjbOkAYb0DFNuezfD0OFrw&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TransactionSchema">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.TransactionSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">TransactionSchema</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">internal_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">type_of_deposit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">from_user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">UserOut</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">sum_of_transaction</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">date_and_time</span><span class="p">:</span> <span class="n">datetime</span></div>
+
+
+
+<div class="viewcode-block" id="TransactionFilterSchema">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.TransactionFilterSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">TransactionFilterSchema</span><span class="p">(</span><span class="n">FilterSchema</span><span class="p">):</span>
+    <span class="n">internal_type</span><span class="p">:</span> <span class="n">CommaList</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="s2">&quot;internal_type__in&quot;</span><span class="p">)</span>
+    <span class="n">type_of_deposit</span><span class="p">:</span> <span class="n">CommaList</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="s2">&quot;type_of_deposit__in&quot;</span><span class="p">)</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">CommaList</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="s2">&quot;status__in&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ConnectWalletSchemaIn">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.ConnectWalletSchemaIn">[docs]</a>
+<span class="k">class</span> <span class="nc">ConnectWalletSchemaIn</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">wallet_connect_code</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Wallet code to find and connect user from miniapp&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ConnectWalletSchemaOut">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.ConnectWalletSchemaOut">[docs]</a>
+<span class="k">class</span> <span class="nc">ConnectWalletSchemaOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">balance</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="WithdrawWalletSchemaOut">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.WithdrawWalletSchemaOut">[docs]</a>
+<span class="k">class</span> <span class="nc">WithdrawWalletSchemaOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">balance</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="WithdrawSchema">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.WithdrawSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">WithdrawSchema</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">user_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="DetailOut">
+<a class="viewcode-back" href="../../accounts.html#accounts.schemes.DetailOut">[docs]</a>
+<span class="k">class</span> <span class="nc">DetailOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">detail</span><span class="p">:</span> <span class="nb">str</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

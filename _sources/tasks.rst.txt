@@ -1,0 +1,69 @@
+tasks package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   tasks.migrations
+
+Submodules
+----------
+
+tasks.admin module
+------------------
+
+.. automodule:: tasks.admin
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tasks.api module
+----------------
+
+.. automodule:: tasks.api
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tasks.apps module
+-----------------
+
+.. automodule:: tasks.apps
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tasks.models module
+-------------------
+
+.. automodule:: tasks.models
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tasks.schemes module
+--------------------
+
+.. automodule:: tasks.schemes
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tasks.tests module
+------------------
+
+.. automodule:: tasks.tests
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: tasks
+   :members:
+   :show-inheritance:
+   :undoc-members:

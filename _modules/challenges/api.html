@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>challenges.api &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../accounts.html">accounts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges.html">challenges package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">core package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../service.html">service package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">challenges.api</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for challenges.api</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">asgiref.sync</span> <span class="kn">import</span> <span class="n">sync_to_async</span>
+<span class="kn">from</span> <span class="nn">django.utils.timezone</span> <span class="kn">import</span> <span class="n">make_aware</span>
+<span class="kn">from</span> <span class="nn">ninja</span> <span class="kn">import</span> <span class="n">Router</span><span class="p">,</span> <span class="n">Query</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">django.core.handlers.asgi</span> <span class="kn">import</span> <span class="n">ASGIRequest</span>
+<span class="kn">from</span> <span class="nn">django.core.handlers.wsgi</span> <span class="kn">import</span> <span class="n">WSGIRequest</span>
+
+<span class="kn">from</span> <span class="nn">ninja.pagination</span> <span class="kn">import</span> <span class="n">paginate</span>
+
+<span class="kn">from</span> <span class="nn">accounts.api</span> <span class="kn">import</span> <span class="n">authenticate</span>
+<span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Transaction</span><span class="p">,</span> <span class="n">TransactionType</span><span class="p">,</span> <span class="n">DepositType</span><span class="p">,</span> <span class="n">TransactionStatus</span>
+<span class="kn">from</span> <span class="nn">accounts.pagination</span> <span class="kn">import</span> <span class="n">MyPaginator</span>
+<span class="c1">#from challenges.checker import Checker</span>
+<span class="kn">from</span> <span class="nn">challenges.models</span> <span class="kn">import</span> <span class="n">Challenge</span><span class="p">,</span> <span class="n">ChallengeCompletion</span><span class="p">,</span> <span class="n">ChallengeTypes</span>
+<span class="kn">from</span> <span class="nn">challenges.schemes</span> <span class="kn">import</span> <span class="n">DetailOut</span><span class="p">,</span> <span class="n">ChallengeFilterSchema</span><span class="p">,</span> \
+    <span class="n">ChallengeListSchema</span><span class="p">,</span> <span class="n">ChallengeSchema</span><span class="p">,</span> <span class="n">ChallengeCompletionSchema</span><span class="p">,</span> <span class="n">CompletionSendOut</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">Router</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="challenges_list">
+<a class="viewcode-back" href="../../challenges.html#challenges.api.challenges_list">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+    <span class="c1">#auth=authenticate,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ChallengeListSchema</span><span class="p">]}</span>
+<span class="p">)</span>
+<span class="nd">@paginate</span><span class="p">(</span><span class="n">MyPaginator</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">challenges_list</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Query</span><span class="p">[</span><span class="n">ChallengeFilterSchema</span><span class="p">]):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parse_comma_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+    <span class="n">parsed_status</span> <span class="o">=</span> <span class="n">parse_comma_list</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">status</span><span class="p">)</span> <span class="k">if</span> <span class="n">filters</span><span class="o">.</span><span class="n">status</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Challenge</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter_expression</span><span class="p">())</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">):</span>
+        <span class="n">challenge_status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">i</span><span class="o">.</span><span class="n">get_user_challenge_status</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;challenge&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">challenge_status</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">parsed_status</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">challenge_status</span> <span class="ow">in</span> <span class="n">parsed_status</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span></div>
+
+
+
+<div class="viewcode-block" id="add_reward">
+<a class="viewcode-back" href="../../challenges.html#challenges.api.add_reward">[docs]</a>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">add_reward</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">challenge</span><span class="p">:</span> <span class="n">Challenge</span><span class="p">,</span> <span class="n">completion_ch_object</span><span class="p">:</span> <span class="n">ChallengeCompletion</span><span class="p">):</span>
+    <span class="n">new_transaction</span><span class="p">:</span> <span class="n">Transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Transaction</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">sum_of_transaction</span><span class="o">=</span><span class="n">challenge</span><span class="o">.</span><span class="n">reward</span><span class="p">,</span>
+        <span class="n">internal_type</span><span class="o">=</span><span class="n">TransactionType</span><span class="o">.</span><span class="n">DEPOSIT</span><span class="p">,</span>
+        <span class="n">type_of_deposit</span><span class="o">=</span><span class="n">DepositType</span><span class="o">.</span><span class="n">CHALLENGE</span><span class="p">,</span>
+        <span class="n">status</span><span class="o">=</span><span class="n">TransactionStatus</span><span class="o">.</span><span class="n">SUCCESSFUL</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">challenge</span><span class="o">.</span><span class="n">reward</span>
+    <span class="n">completion_ch_object</span><span class="o">.</span><span class="n">claimed</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">referral</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;referral_user&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">afirst</span><span class="p">())</span><span class="o">.</span><span class="n">referral_user</span>
+    <span class="k">if</span> <span class="n">referral</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">referral_reward</span> <span class="o">=</span> <span class="n">challenge</span><span class="o">.</span><span class="n">reward</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.05</span> <span class="o">*</span> <span class="n">referral</span><span class="o">.</span><span class="n">referral_level</span><span class="p">)</span>
+        <span class="n">referral_reward_transaction</span><span class="p">:</span> <span class="n">Transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Transaction</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">referral</span><span class="p">,</span>
+            <span class="n">sum_of_transaction</span><span class="o">=</span><span class="n">referral_reward</span><span class="p">,</span>
+            <span class="n">internal_type</span><span class="o">=</span><span class="n">TransactionType</span><span class="o">.</span><span class="n">DEPOSIT</span><span class="p">,</span>
+            <span class="n">type_of_deposit</span><span class="o">=</span><span class="n">DepositType</span><span class="o">.</span><span class="n">REFERRAL</span><span class="p">,</span>
+            <span class="n">status</span><span class="o">=</span><span class="n">TransactionStatus</span><span class="o">.</span><span class="n">SUCCESSFUL</span><span class="p">,</span>
+            <span class="n">from_user</span><span class="o">=</span><span class="n">user</span>
+        <span class="p">)</span>
+        <span class="n">referral</span><span class="o">.</span><span class="n">referral_earnings</span> <span class="o">+=</span> <span class="n">referral_reward</span>
+        <span class="n">referral</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">referral_reward</span>
+        <span class="k">await</span> <span class="n">referral</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">referral_reward_transaction</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">new_transaction</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">completion_ch_object</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="challenges_complete">
+<a class="viewcode-back" href="../../challenges.html#challenges.api.challenges_complete">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{challenge_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="c1">#auth=authenticate,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">CompletionSendOut</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">challenges_complete</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+    <span class="n">challenge</span><span class="p">:</span> <span class="n">Challenge</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Challenge</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">challenge_id</span><span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">afirst</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">challenge</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Task not found&quot;</span><span class="p">}</span>
+    <span class="k">if</span> <span class="k">await</span> <span class="n">ChallengeCompletion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">challenge</span><span class="o">=</span><span class="n">challenge</span><span class="p">,</span>
+                                                <span class="n">claimed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">acount</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">challenge</span><span class="o">.</span><span class="n">completion_limit</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Completion limit reached&quot;</span><span class="p">}</span>
+
+    <span class="n">completion_ch_object</span><span class="p">:</span> <span class="n">ChallengeCompletion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ChallengeCompletion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">challenge</span><span class="o">=</span><span class="n">challenge</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">afirst</span><span class="p">()</span>
+
+    <span class="n">created</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">completion_ch_object</span><span class="p">:</span>
+        <span class="n">new_completion_ch_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;challenge&quot;</span><span class="p">:</span> <span class="n">challenge</span><span class="p">,</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s2">&quot;claimed&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">challenge</span><span class="o">.</span><span class="n">imitation_timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">new_completion_ch_info</span><span class="p">[</span><span class="s2">&quot;can_be_claimed_in&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">challenge</span><span class="o">.</span><span class="n">imitation_timer</span>
+
+        <span class="n">completion_ch_object</span><span class="p">:</span> <span class="n">ChallengeCompletion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ChallengeCompletion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">new_completion_ch_info</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">created</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="n">completion_ch_object</span><span class="o">.</span><span class="n">claimed</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Already Claimed&quot;</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">challenge</span><span class="o">.</span><span class="n">internal_type</span> <span class="o">==</span> <span class="n">ChallengeTypes</span><span class="o">.</span><span class="n">REAL</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">challenge</span><span class="o">.</span><span class="n">channel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Channel not specified&quot;</span><span class="p">}</span>
+            <span class="c1"># TODO: По-хорошему сделать асинхронным</span>
+            <span class="c1">#resp = Checker().check_member(_id=user.id, channel=challenge.channel.uri)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+                <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Checker fail&quot;</span><span class="p">}</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#resp.get(&quot;response&quot;)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Checker fail&quot;</span><span class="p">}</span>
+
+            <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;member&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+                    <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="n">created</span><span class="p">,</span>
+                    <span class="s2">&quot;claim_prize&quot;</span><span class="p">:</span> <span class="s2">&quot;not claimed&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="k">await</span> <span class="n">add_reward</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">challenge</span><span class="o">=</span><span class="n">challenge</span><span class="p">,</span> <span class="n">completion_ch_object</span><span class="o">=</span><span class="n">completion_ch_object</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+                <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="n">created</span><span class="p">,</span>
+                <span class="s2">&quot;claim_prize&quot;</span><span class="p">:</span> <span class="s2">&quot;claimed&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">elif</span> <span class="n">challenge</span><span class="o">.</span><span class="n">internal_type</span> <span class="o">==</span> <span class="n">ChallengeTypes</span><span class="o">.</span><span class="n">IMITATION</span><span class="p">:</span>
+            <span class="n">current_tz</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">get_current_timezone</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">completion_ch_object</span><span class="o">.</span><span class="n">can_be_claimed_in</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">current_tz</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">current_tz</span><span class="p">):</span>
+                <span class="k">await</span> <span class="n">add_reward</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">challenge</span><span class="o">=</span><span class="n">challenge</span><span class="p">,</span> <span class="n">completion_ch_object</span><span class="o">=</span><span class="n">completion_ch_object</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+                    <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="n">created</span><span class="p">,</span>
+                    <span class="s2">&quot;claim_prize&quot;</span><span class="p">:</span> <span class="s2">&quot;claimed&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="k">return</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+                <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="n">created</span><span class="p">,</span>
+                <span class="s2">&quot;claim_prize&quot;</span><span class="p">:</span> <span class="s2">&quot;not claimed&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Unknown Error&quot;</span><span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="challenge_info">
+<a class="viewcode-back" href="../../challenges.html#challenges.api.challenge_info">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{challenge_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="c1">#auth=authenticate,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">ChallengeSchema</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">challenge_info</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">challenge</span><span class="p">:</span> <span class="n">Challenge</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Challenge</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">challenge_id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Challenge</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Challenge not found&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">challenge</span></div>
+
+
+
+<div class="viewcode-block" id="completion_by_challenge_id_info">
+<a class="viewcode-back" href="../../challenges.html#challenges.api.completion_by_challenge_id_info">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/completions/</span><span class="si">{challenge_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="c1">#auth=authenticate,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">ChallengeCompletionSchema</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">completion_by_challenge_id_info</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">challenge</span><span class="p">:</span> <span class="n">Challenge</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Challenge</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">challenge_id</span><span class="p">)</span>
+        <span class="n">challenges_completion</span><span class="p">:</span> <span class="n">ChallengeCompletion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ChallengeCompletion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;challenge&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;challenge__channel&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span>
+            <span class="n">challenge</span><span class="o">=</span><span class="n">challenge</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">Challenge</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Challenge not found&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">ChallengeCompletion</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Challenge completion not found&quot;</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">challenges_completion</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

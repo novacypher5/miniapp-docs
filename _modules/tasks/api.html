@@ -1,0 +1,594 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tasks.api &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../accounts.html">accounts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../challenges.html">challenges package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core.html">core package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../service.html">service package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tasks.api</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tasks.api</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">mimetypes</span>
+<span class="kn">from</span> <span class="nn">codecs</span> <span class="kn">import</span> <span class="n">Codec</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">asgiref.sync</span> <span class="kn">import</span> <span class="n">sync_to_async</span>
+<span class="kn">from</span> <span class="nn">django.core.handlers.asgi</span> <span class="kn">import</span> <span class="n">ASGIRequest</span>
+<span class="kn">from</span> <span class="nn">django.core.handlers.wsgi</span> <span class="kn">import</span> <span class="n">WSGIRequest</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Count</span><span class="p">,</span> <span class="n">Avg</span><span class="p">,</span> <span class="n">QuerySet</span>
+<span class="kn">from</span> <span class="nn">django.forms</span> <span class="kn">import</span> <span class="n">model_to_dict</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">ninja</span> <span class="kn">import</span> <span class="n">Router</span><span class="p">,</span> <span class="n">Query</span>
+<span class="kn">from</span> <span class="nn">ninja.pagination</span> <span class="kn">import</span> <span class="n">paginate</span>
+
+<span class="kn">from</span> <span class="nn">accounts.api</span> <span class="kn">import</span> <span class="n">authenticate</span>
+<span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Transaction</span><span class="p">,</span> <span class="n">DepositType</span><span class="p">,</span> <span class="n">TransactionType</span><span class="p">,</span> <span class="n">TransactionStatus</span>
+<span class="kn">from</span> <span class="nn">accounts.pagination</span> <span class="kn">import</span> <span class="n">MyPaginator</span>
+<span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">tasks.models</span> <span class="kn">import</span> <span class="n">MyFile</span><span class="p">,</span> <span class="n">Task</span><span class="p">,</span> <span class="n">Completion</span><span class="p">,</span> <span class="n">Status</span><span class="p">,</span> <span class="n">RateRecord</span>
+<span class="kn">from</span> <span class="nn">tasks.schemes</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">FileOutAWS</span><span class="p">,</span>
+    <span class="n">DetailOut</span><span class="p">,</span>
+    <span class="n">FileIn</span><span class="p">,</span>
+    <span class="n">CompletionStartIn</span><span class="p">,</span>
+    <span class="n">CompletionSendIn</span><span class="p">,</span>
+    <span class="n">CompletionOut</span><span class="p">,</span>
+    <span class="n">TaskOut</span><span class="p">,</span>
+    <span class="n">TaskFilterSchema</span><span class="p">,</span>
+    <span class="n">CompletionValidationIn</span><span class="p">,</span>
+    <span class="n">CompletionFilterSchema</span><span class="p">,</span> <span class="n">ValidationListTaskOut</span><span class="p">,</span> <span class="n">CompletionHistoryOut</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">aioboto3</span>
+<span class="kn">from</span> <span class="nn">aiobotocore.config</span> <span class="kn">import</span> <span class="n">AioConfig</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">Router</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="start_completion">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.start_completion">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/completions/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">CompletionOut</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Create empty completion&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start_completion</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">CompletionStartIn</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="n">already_started</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">HOLD</span><span class="p">)</span><span class="o">.</span><span class="n">aexists</span><span class="p">()</span>
+        <span class="c1"># already_started = False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">already_started</span><span class="p">:</span>
+            <span class="n">completion_task</span><span class="p">:</span> <span class="n">Task</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">completion_task</span><span class="p">)</span><span class="o">.</span><span class="n">acount</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">completion_task</span><span class="o">.</span><span class="n">limit_completions</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Completion limit reached&quot;</span><span class="p">}</span>
+            <span class="n">completion_object</span><span class="p">:</span> <span class="n">Completion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">current_user</span><span class="p">,</span>
+                <span class="n">task</span><span class="o">=</span><span class="n">completion_task</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">completion_date_and_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">HOLD</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">await</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">completion_object</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Some completion has been already started&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;User does not exist&quot;</span><span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="sign_s3_file">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.sign_s3_file">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/sign-s3/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">FileOutAWS</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Sign file and get an upload link&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">sign_s3_file</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Query</span><span class="p">[</span><span class="n">FileIn</span><span class="p">]):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">file_type</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">completion_object</span><span class="p">:</span> <span class="n">Completion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">completion_id</span><span class="p">)</span>
+        <span class="n">task</span><span class="p">:</span> <span class="n">Task</span> <span class="o">=</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">task</span>
+    <span class="k">except</span> <span class="n">Completion</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Task does not exist&quot;</span><span class="p">}</span>
+
+    <span class="n">session</span> <span class="o">=</span> <span class="n">aioboto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">new_file</span><span class="p">:</span> <span class="n">MyFile</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MyFile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+        <span class="n">original_file_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span>
+        <span class="n">file_type</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">file_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">file_uuid</span><span class="o">=</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+            <span class="n">service_name</span><span class="o">=</span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+            <span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">AWS_ACCESS_KEY_ID</span><span class="p">,</span>
+            <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">AWS_SECRET_ACCESS_KEY</span><span class="p">,</span>
+            <span class="c1"># endpoint_url=&quot;https://s3-standard.oortech.com&quot;,</span>
+            <span class="n">config</span><span class="o">=</span><span class="n">AioConfig</span><span class="p">(</span>
+                <span class="n">signature_version</span><span class="o">=</span><span class="s2">&quot;s3v4&quot;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">AWS_S3_REGION_NAME</span>
+            <span class="p">),</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">s3</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="k">await</span> <span class="n">s3</span><span class="o">.</span><span class="n">generate_presigned_url</span><span class="p">(</span>
+                <span class="s2">&quot;put_object&quot;</span><span class="p">,</span>
+                <span class="n">Params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;Bucket&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">AWS_STORAGE_BUCKET_NAME</span><span class="p">,</span>
+                    <span class="s2">&quot;Key&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Tasks/</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">new_file</span><span class="o">.</span><span class="n">file_uuid</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span><span class="si">}{</span><span class="n">new_file</span><span class="o">.</span><span class="n">file_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;ContentType&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">file_type</span><span class="p">,</span>
+                    <span class="c1"># &quot;ACL&quot;: &quot;public-read&quot;,</span>
+                <span class="p">},</span>
+                <span class="n">ExpiresIn</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>
+                <span class="n">HttpMethod</span><span class="o">=</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Failed to generate presigned url: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+    <span class="n">new_file</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">AWS_STATIC_URL</span><span class="si">}</span><span class="s2">Tasks/</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">new_file</span><span class="o">.</span><span class="n">file_uuid</span><span class="si">}{</span><span class="n">new_file</span><span class="o">.</span><span class="n">file_type</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">await</span> <span class="n">new_file</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+    <span class="k">return</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s2">&quot;presigned_url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">new_file</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+        <span class="s2">&quot;file_uuid&quot;</span><span class="p">:</span> <span class="n">new_file</span><span class="o">.</span><span class="n">file_uuid</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="send_completion">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.send_completion">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="s2">&quot;/completions/</span><span class="si">{completion_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">CompletionOut</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Send completion with file&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">send_completion</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">completion_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">CompletionSendIn</span>
+<span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">completion_object</span><span class="p">:</span> <span class="n">Completion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;task&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;file&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">completion_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file_object</span><span class="p">:</span> <span class="n">MyFile</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MyFile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="n">file_uuid</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">file_uuid</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
+            <span class="n">file_object</span><span class="o">.</span><span class="n">upload_finished_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+            <span class="n">completion_object</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file_object</span>
+            <span class="n">completion_object</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">IN_REVIEW</span>
+
+            <span class="n">completion_object</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">when_was_sent_to_validation</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+            <span class="k">await</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+            <span class="k">await</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+            <span class="k">await</span> <span class="n">file_object</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;File already sent&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">Completion</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Completion does not exist&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">MyFile</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;File does not exist&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">completion_object</span></div>
+
+
+
+<div class="viewcode-block" id="cancel_completion">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.cancel_completion">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+    <span class="s2">&quot;/completions/</span><span class="si">{completion_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Cancel completion if started&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_completion</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span>
+        <span class="n">completion_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">completion_object</span><span class="p">:</span> <span class="n">Completion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">completion_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">adelete</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Completion has been cancelled&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">Completion</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;No completion found&quot;</span><span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="get_list_of_tasks">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.get_list_of_tasks">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">TaskOut</span><span class="p">],</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;List of all tasks with filtering&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nd">@paginate</span><span class="p">(</span><span class="n">MyPaginator</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_list_of_tasks</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Query</span><span class="p">[</span><span class="n">TaskFilterSchema</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter_expression</span><span class="p">())</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter_expression</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">aexists</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">task</span><span class="o">.</span><span class="n">task_paused</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">start_time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">task</span><span class="o">.</span><span class="n">start_time</span> <span class="o">&lt;=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">():</span>
+                        <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">tasks</span></div>
+
+
+
+<div class="viewcode-block" id="get_task_info">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.get_task_info">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{task_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">TaskOut</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Get task info&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_task_info</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">task</span><span class="p">:</span> <span class="n">Task</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Task</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Task does not exist&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">task</span></div>
+
+
+
+<div class="viewcode-block" id="get_completion_info">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.get_completion_info">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/completions/</span><span class="si">{completion_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">CompletionOut</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Get completion info&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_completion_info</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">completion_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">completion</span><span class="p">:</span> <span class="n">Completion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">completion_id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Completion</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;No completion found&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">completion</span></div>
+
+
+
+<div class="viewcode-block" id="get_list_of_completions">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.get_list_of_completions">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/completions/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionHistoryOut</span><span class="p">],</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Get list of user completions and validations&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nd">@paginate</span><span class="p">(</span><span class="n">MyPaginator</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_list_of_completions</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Query</span><span class="p">[</span><span class="n">CompletionFilterSchema</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter_expression</span><span class="p">())</span>
+        <span class="n">completions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">parse_comma_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+        <span class="n">parsed_task_type</span> <span class="o">=</span> <span class="n">parse_comma_list</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">task_type</span><span class="p">)</span> <span class="k">if</span> <span class="n">filters</span><span class="o">.</span><span class="n">task_type</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">parsed_task_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;Task&quot;</span> <span class="ow">in</span> <span class="n">parsed_task_type</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">for</span> <span class="n">completion</span> <span class="ow">in</span> <span class="p">(</span>
+                    <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">current_user</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter_expression</span><span class="p">())</span>
+            <span class="p">):</span>
+                <span class="n">completions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">&quot;completion&quot;</span><span class="p">:</span> <span class="n">completion</span><span class="p">,</span>
+                    <span class="s2">&quot;task_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">completion</span><span class="o">.</span><span class="n">completion_date_and_time</span>
+                <span class="p">})</span>
+
+        <span class="k">if</span> <span class="n">parsed_task_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;Validation&quot;</span> <span class="ow">in</span> <span class="n">parsed_task_type</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">for</span> <span class="n">rate_record</span> <span class="ow">in</span> <span class="n">RateRecord</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span>
+                    <span class="s2">&quot;completion&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;completion__user&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;completion__task&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;completion__file&quot;</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">validator</span><span class="o">=</span><span class="n">current_user</span><span class="p">):</span>
+                <span class="n">completion</span> <span class="o">=</span> <span class="n">rate_record</span><span class="o">.</span><span class="n">completion</span>
+
+                <span class="k">if</span> <span class="n">filters</span><span class="o">.</span><span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">completion</span><span class="o">.</span><span class="n">status</span> <span class="ow">in</span> <span class="n">filters</span><span class="o">.</span><span class="n">status</span><span class="p">:</span>
+                    <span class="n">completions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                        <span class="s2">&quot;completion&quot;</span><span class="p">:</span> <span class="n">completion</span><span class="p">,</span>
+                        <span class="s2">&quot;task_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Validation&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">rate_record</span><span class="o">.</span><span class="n">created_at</span>
+                    <span class="p">})</span>
+
+        <span class="n">completions_sorted</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">completions</span><span class="p">:</span>
+            <span class="n">completions_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">completions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">completions_sorted</span>
+    <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;No completion found&quot;</span><span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="get_list_of_tasks_to_validate">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.get_list_of_tasks_to_validate">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/validations/completions/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">ValidationListTaskOut</span><span class="p">],</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;List of all tasks with at least one completion to validate&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nd">@paginate</span><span class="p">(</span><span class="n">MyPaginator</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_list_of_tasks_to_validate</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Query</span><span class="p">[</span><span class="n">TaskFilterSchema</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">get_filter_expression</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">pool</span> <span class="o">=</span> <span class="k">await</span> <span class="n">task</span><span class="o">.</span><span class="n">get_validation_pool_without_current_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+            <span class="n">is_suitable</span> <span class="o">=</span> <span class="k">await</span> <span class="n">task</span><span class="o">.</span><span class="n">is_suitable_to_be_validated</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>  <span class="c1"># Позволяет не выводить таск, который пользователь уже валидировал</span>
+
+            <span class="k">if</span> <span class="n">pool</span> <span class="ow">and</span> <span class="n">is_suitable</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">task</span><span class="o">.</span><span class="n">validation_paused</span><span class="p">:</span>
+                    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;task&quot;</span><span class="p">:</span> <span class="n">task</span><span class="p">,</span>
+                            <span class="s2">&quot;available&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool</span><span class="p">),</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+    <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Task does not exist&quot;</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">tasks</span></div>
+
+
+
+<div class="viewcode-block" id="get_completion_to_validate">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.get_completion_to_validate">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/validations/</span><span class="si">{task_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">CompletionOut</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Get a completion from task to validate&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_completion_to_validate</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">task</span><span class="p">:</span> <span class="n">Task</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">)</span>
+        <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="c1"># max_rates_allowed = task.limit_completions * (task.validation_percent / 100)</span>
+        <span class="n">eligible_completions_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">task</span><span class="o">.</span><span class="n">get_validation_pool_without_current_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">eligible_completions_list</span><span class="p">:</span>
+            <span class="n">random_completion</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">eligible_completions_list</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">random_completion</span>
+    <span class="k">except</span> <span class="n">Task</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Task not found&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;User not found&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;There is no completion to validate&quot;</span><span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="validate">
+<a class="viewcode-back" href="../../tasks.html#tasks.api.validate">[docs]</a>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/validations/completions/</span><span class="si">{completion_id}</span><span class="s2">/&quot;</span><span class="p">,</span>
+    <span class="n">auth</span><span class="o">=</span><span class="n">authenticate</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="p">{</span><span class="mi">200</span><span class="p">:</span> <span class="n">CompletionOut</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">,</span> <span class="mi">404</span><span class="p">:</span> <span class="n">DetailOut</span><span class="p">},</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s2">&quot;Validate task completion and create a rate record&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">WSGIRequest</span> <span class="o">|</span> <span class="n">ASGIRequest</span><span class="p">,</span>
+        <span class="n">completion_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">CompletionValidationIn</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># TODO: Не забыть добавить таймер на 24ч и админский интерфейс</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">completion_object</span><span class="p">:</span> <span class="n">Completion</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">completion_id</span><span class="p">)</span>
+        <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="n">RateRecord</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">completion_id</span><span class="o">=</span><span class="n">completion_id</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="n">current_user</span><span class="p">)</span><span class="o">.</span><span class="n">aexists</span><span class="p">():</span>
+            <span class="n">new_rate_record</span><span class="p">:</span> <span class="n">RateRecord</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RateRecord</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+                <span class="n">completion_id</span><span class="o">=</span><span class="n">completion_id</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="n">current_user</span>
+            <span class="p">)</span>
+
+            <span class="n">avg_score</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">async</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">RateRecord</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">completion</span><span class="o">=</span><span class="n">completion_object</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;completion&quot;</span><span class="p">,</span> <span class="s2">&quot;validator&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                <span class="n">avg_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+            <span class="n">completion_object</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">avg_score</span><span class="p">:</span>
+                <span class="n">avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">avg_score</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">avg_score</span><span class="p">)</span>
+                <span class="n">completion_object</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">avg</span>
+            <span class="k">await</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+
+            <span class="n">max_rates_allowed</span> <span class="o">=</span> <span class="n">completion_object</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">limit_completions</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="n">completion_object</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">validation_percent</span> <span class="o">/</span> <span class="mi">100</span>
+            <span class="p">)</span>
+            <span class="n">completions</span> <span class="o">=</span> <span class="n">Completion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">task</span><span class="o">=</span><span class="n">completion_object</span><span class="o">.</span><span class="n">task</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">completions_with_rate_counter</span> <span class="o">=</span> <span class="n">completions</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+                <span class="n">rate_count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;completion_rate&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="k">await</span> <span class="n">completions_with_rate_counter</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">rate_count__gte</span><span class="o">=</span><span class="n">completion_object</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">validation_limit</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">acount</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">max_rates_allowed</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">completions</span><span class="o">.</span><span class="n">aupdate</span><span class="p">(</span>
+                    <span class="n">sent_for_manual_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">when_sent_for_validation</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+                <span class="p">)</span>
+
+                <span class="n">not_validates_at_all</span> <span class="o">=</span> <span class="n">completions_with_rate_counter</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">rate_count</span><span class="o">=</span><span class="mi">0</span>
+                <span class="p">)</span>
+                <span class="k">async</span> <span class="k">for</span> <span class="n">completion</span> <span class="ow">in</span> <span class="n">not_validates_at_all</span><span class="p">:</span>
+                    <span class="n">rate_records</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">completion_rate</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;completion&quot;</span><span class="p">,</span> <span class="s2">&quot;validator&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                    <span class="n">validators_to_reward</span> <span class="o">=</span> <span class="n">rate_records</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">score__gte</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s2">&quot;validator&quot;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="c1"># self._reward_users(completion=completion, user_ids=validators_to_reward, main_user=completion.user.id)</span>
+
+                    <span class="n">main_user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;referral_user&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">completion</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                    <span class="n">task_reward</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">reward</span>
+                    <span class="n">main_user</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="n">main_user</span><span class="o">.</span><span class="n">calculate_bonus</span><span class="p">)(</span><span class="n">task_reward</span><span class="p">)</span>
+                    <span class="n">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Transaction</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+                        <span class="n">user</span><span class="o">=</span><span class="n">main_user</span><span class="p">,</span>
+                        <span class="n">sum_of_transaction</span><span class="o">=</span><span class="n">completion</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">reward</span><span class="p">,</span>
+                        <span class="n">internal_type</span><span class="o">=</span><span class="n">TransactionType</span><span class="o">.</span><span class="n">DEPOSIT</span><span class="p">,</span>
+                        <span class="n">type_of_deposit</span><span class="o">=</span><span class="n">DepositType</span><span class="o">.</span><span class="n">TASK</span><span class="p">,</span>
+                        <span class="n">status</span><span class="o">=</span><span class="n">TransactionStatus</span><span class="o">.</span><span class="n">SUCCESSFUL</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">main_user</span><span class="o">.</span><span class="n">referral_user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">referral_reward</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">reward</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.05</span> <span class="o">*</span> <span class="n">main_user</span><span class="o">.</span><span class="n">referral_user</span><span class="o">.</span><span class="n">referral_level</span><span class="p">)</span>
+                        <span class="n">main_user</span><span class="o">.</span><span class="n">referral_user</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">referral_reward</span>
+                        <span class="n">referral_transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Transaction</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+                            <span class="n">user</span><span class="o">=</span><span class="n">main_user</span><span class="o">.</span><span class="n">referral_user</span><span class="p">,</span>
+                            <span class="n">sum_of_transaction</span><span class="o">=</span><span class="n">referral_reward</span><span class="p">,</span>
+                            <span class="n">internal_type</span><span class="o">=</span><span class="n">TransactionType</span><span class="o">.</span><span class="n">DEPOSIT</span><span class="p">,</span>
+                            <span class="n">type_of_deposit</span><span class="o">=</span><span class="n">DepositType</span><span class="o">.</span><span class="n">REFERRAL</span><span class="p">,</span>
+                            <span class="n">status</span><span class="o">=</span><span class="n">TransactionStatus</span><span class="o">.</span><span class="n">SUCCESSFUL</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="n">main_user</span><span class="o">.</span><span class="n">referral_user</span><span class="o">.</span><span class="n">referral_earnings</span> <span class="o">+=</span> <span class="n">referral_reward</span>
+                        <span class="k">await</span> <span class="n">main_user</span><span class="o">.</span><span class="n">referral_user</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+                        <span class="k">await</span> <span class="n">referral_transaction</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+
+                    <span class="k">await</span> <span class="n">transaction</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+                    <span class="k">await</span> <span class="n">main_user</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+
+                    <span class="n">completion</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">ACCEPTED</span>
+                    <span class="k">await</span> <span class="n">completion</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+
+                    <span class="k">async</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="k">await</span> <span class="n">sync_to_async</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">)(</span><span class="n">id__in</span><span class="o">=</span><span class="n">validators_to_reward</span><span class="p">):</span>
+                        <span class="n">user</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">completion</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">validation_reward</span>
+                        <span class="n">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Transaction</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">acreate</span><span class="p">(</span>
+                            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                            <span class="n">sum_of_transaction</span><span class="o">=</span><span class="n">completion</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">validation_reward</span><span class="p">,</span>
+                            <span class="n">internal_type</span><span class="o">=</span><span class="n">TransactionType</span><span class="o">.</span><span class="n">DEPOSIT</span><span class="p">,</span>
+                            <span class="n">type_of_deposit</span><span class="o">=</span><span class="n">DepositType</span><span class="o">.</span><span class="n">VALIDATION</span><span class="p">,</span>
+                            <span class="n">status</span><span class="o">=</span><span class="n">TransactionStatus</span><span class="o">.</span><span class="n">SUCCESSFUL</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+                        <span class="k">await</span> <span class="n">transaction</span><span class="o">.</span><span class="n">asave</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">completion_object</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Already rated&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;User does not exist&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">Completion</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;No completion found&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">Task</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Task not found&quot;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">RateRecord</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;No completion found&quot;</span><span class="p">}</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

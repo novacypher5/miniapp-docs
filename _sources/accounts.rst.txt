@@ -1,0 +1,77 @@
+accounts package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   accounts.migrations
+
+Submodules
+----------
+
+accounts.admin module
+---------------------
+
+.. automodule:: accounts.admin
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.api module
+-------------------
+
+.. automodule:: accounts.api
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.apps module
+--------------------
+
+.. automodule:: accounts.apps
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.models module
+----------------------
+
+.. automodule:: accounts.models
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.pagination module
+--------------------------
+
+.. automodule:: accounts.pagination
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.schemes module
+-----------------------
+
+.. automodule:: accounts.schemes
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.tests module
+---------------------
+
+.. automodule:: accounts.tests
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: accounts
+   :members:
+   :show-inheritance:
+   :undoc-members:

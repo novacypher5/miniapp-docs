@@ -1,0 +1,29 @@
+challenges.migrations package
+=============================
+
+Submodules
+----------
+
+challenges.migrations.0001\_initial module
+------------------------------------------
+
+.. automodule:: challenges.migrations.0001_initial
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.migrations.0002\_alter\_challenge\_avatar module
+-----------------------------------------------------------
+
+.. automodule:: challenges.migrations.0002_alter_challenge_avatar
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: challenges.migrations
+   :members:
+   :show-inheritance:
+   :undoc-members:

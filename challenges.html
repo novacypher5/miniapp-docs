@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>challenges package &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="challenges.migrations package" href="challenges.migrations.html" />
+    <link rel="prev" title="accounts.migrations package" href="accounts.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">accounts package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">challenges package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.migrations.html">challenges.migrations package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.admin">challenges.admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.admin.ChallengeAdmin"><code class="docutils literal notranslate"><span class="pre">ChallengeAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.admin.ChallengeAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">ChallengeAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.admin.ChallengeAdmin.media"><code class="docutils literal notranslate"><span class="pre">ChallengeAdmin.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.admin.ChallengeCompletionAdmin"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.admin.ChallengeCompletionAdmin.list_display"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionAdmin.list_display</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.admin.ChallengeCompletionAdmin.media"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionAdmin.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.admin.TgChannelAdmin"><code class="docutils literal notranslate"><span class="pre">TgChannelAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.admin.TgChannelAdmin.media"><code class="docutils literal notranslate"><span class="pre">TgChannelAdmin.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.api">challenges.api module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.api.add_reward"><code class="docutils literal notranslate"><span class="pre">add_reward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.api.challenge_info"><code class="docutils literal notranslate"><span class="pre">challenge_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.api.challenges_complete"><code class="docutils literal notranslate"><span class="pre">challenges_complete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.api.challenges_list"><code class="docutils literal notranslate"><span class="pre">challenges_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.api.completion_by_challenge_id_info"><code class="docutils literal notranslate"><span class="pre">completion_by_challenge_id_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.apps">challenges.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.apps.ChallengesConfig"><code class="docutils literal notranslate"><span class="pre">ChallengesConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.apps.ChallengesConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ChallengesConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.apps.ChallengesConfig.name"><code class="docutils literal notranslate"><span class="pre">ChallengesConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.checker">challenges.checker module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.checker.Checker"><code class="docutils literal notranslate"><span class="pre">Checker</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.checker.Checker.check_member"><code class="docutils literal notranslate"><span class="pre">Checker.check_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.checker.Checker.req"><code class="docutils literal notranslate"><span class="pre">Checker.req()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.checker.prepare_data"><code class="docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.models">challenges.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.models.Challenge"><code class="docutils literal notranslate"><span class="pre">Challenge</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Challenge.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Challenge.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.avatar"><code class="docutils literal notranslate"><span class="pre">Challenge.avatar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.button_text"><code class="docutils literal notranslate"><span class="pre">Challenge.button_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.challengecompletion_set"><code class="docutils literal notranslate"><span class="pre">Challenge.challengecompletion_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.channel"><code class="docutils literal notranslate"><span class="pre">Challenge.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.channel_id"><code class="docutils literal notranslate"><span class="pre">Challenge.channel_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.clean"><code class="docutils literal notranslate"><span class="pre">Challenge.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.completion_limit"><code class="docutils literal notranslate"><span class="pre">Challenge.completion_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.get_internal_type_display"><code class="docutils literal notranslate"><span class="pre">Challenge.get_internal_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.get_user_challenge_status"><code class="docutils literal notranslate"><span class="pre">Challenge.get_user_challenge_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.id"><code class="docutils literal notranslate"><span class="pre">Challenge.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.imitation_timer"><code class="docutils literal notranslate"><span class="pre">Challenge.imitation_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.internal_type"><code class="docutils literal notranslate"><span class="pre">Challenge.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.objects"><code class="docutils literal notranslate"><span class="pre">Challenge.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.redirect_link"><code class="docutils literal notranslate"><span class="pre">Challenge.redirect_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.reward"><code class="docutils literal notranslate"><span class="pre">Challenge.reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.target_user_language"><code class="docutils literal notranslate"><span class="pre">Challenge.target_user_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.target_user_status"><code class="docutils literal notranslate"><span class="pre">Challenge.target_user_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.Challenge.title"><code class="docutils literal notranslate"><span class="pre">Challenge.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.models.ChallengeCompletion"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.can_be_claimed_in"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.can_be_claimed_in</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.challenge"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.challenge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.challenge_id"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.challenge_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.claimed"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.claimed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.id"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.objects"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.user"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeCompletion.user_id"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletion.user_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.models.ChallengeTypes"><code class="docutils literal notranslate"><span class="pre">ChallengeTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeTypes.IMITATION"><code class="docutils literal notranslate"><span class="pre">ChallengeTypes.IMITATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.ChallengeTypes.REAL"><code class="docutils literal notranslate"><span class="pre">ChallengeTypes.REAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.models.CompletionTypes"><code class="docutils literal notranslate"><span class="pre">CompletionTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.CompletionTypes.CLAIMED"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.CLAIMED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.CompletionTypes.IN_PROGRESS"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.IN_PROGRESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.CompletionTypes.NOT_CLAIMED"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.NOT_CLAIMED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.CompletionTypes.NOT_STARTED"><code class="docutils literal notranslate"><span class="pre">CompletionTypes.NOT_STARTED</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.models.TgChannel"><code class="docutils literal notranslate"><span class="pre">TgChannel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.TgChannel.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">TgChannel.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.TgChannel.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">TgChannel.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.TgChannel.challenge_set"><code class="docutils literal notranslate"><span class="pre">TgChannel.challenge_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.TgChannel.id"><code class="docutils literal notranslate"><span class="pre">TgChannel.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.TgChannel.objects"><code class="docutils literal notranslate"><span class="pre">TgChannel.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.models.TgChannel.uri"><code class="docutils literal notranslate"><span class="pre">TgChannel.uri</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.schemes">challenges.schemes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.can_be_claimed_in"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.can_be_claimed_in</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.challenge"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.challenge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.claimed"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.claimed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeCompletionSchema.user"><code class="docutils literal notranslate"><span class="pre">ChallengeCompletionSchema.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.custom_expression"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.custom_expression()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.status"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.target_user_language"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.target_user_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeFilterSchema.target_user_status"><code class="docutils literal notranslate"><span class="pre">ChallengeFilterSchema.target_user_status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.ChallengeListSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeListSchema.challenge"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.challenge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeListSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeListSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeListSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeListSchema.status"><code class="docutils literal notranslate"><span class="pre">ChallengeListSchema.status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.ChallengeSchema"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.avatar"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.avatar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.button_text"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.button_text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.channel"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.completion_limit"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.completion_limit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.id"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.imitation_timer"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.imitation_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.internal_type"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.internal_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.redirect_link"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.redirect_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.reward"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.reward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.target_user_language"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.target_user_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.target_user_status"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.target_user_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChallengeSchema.title"><code class="docutils literal notranslate"><span class="pre">ChallengeSchema.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.ChannelSchema"><code class="docutils literal notranslate"><span class="pre">ChannelSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChannelSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChannelSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChannelSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.ChannelSchema.uri"><code class="docutils literal notranslate"><span class="pre">ChannelSchema.uri</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.CompletionSendOut"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.CompletionSendOut.claim_prize"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.claim_prize</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.CompletionSendOut.created"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.created</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.CompletionSendOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.CompletionSendOut.model_config"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.CompletionSendOut.model_fields"><code class="docutils literal notranslate"><span class="pre">CompletionSendOut.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#challenges.schemes.DetailOut"><code class="docutils literal notranslate"><span class="pre">DetailOut</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.DetailOut.detail"><code class="docutils literal notranslate"><span class="pre">DetailOut.detail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.DetailOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.DetailOut.model_config"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#challenges.schemes.DetailOut.model_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges.tests">challenges.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-challenges">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">core package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service.html">service package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">challenges package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/challenges.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="challenges-package">
+<h1>challenges package<a class="headerlink" href="#challenges-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="challenges.migrations.html">challenges.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="challenges.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.migrations.html#module-challenges.migrations.0001_initial">challenges.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.migrations.html#module-challenges.migrations.0002_alter_challenge_avatar">challenges.migrations.0002_alter_challenge_avatar module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0002_alter_challenge_avatar.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0002_alter_challenge_avatar.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="challenges.migrations.html#challenges.migrations.0002_alter_challenge_avatar.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="challenges.migrations.html#module-challenges.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-challenges.admin">
+<span id="challenges-admin-module"></span><h2>challenges.admin module<a class="headerlink" href="#module-challenges.admin" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.admin.ChallengeAdmin">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.admin.</span></span><span class="sig-name descname"><span class="pre">ChallengeAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/admin.html#ChallengeAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.admin.ChallengeAdmin" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.admin.ChallengeAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['title',</span> <span class="pre">'reward',</span> <span class="pre">'internal_type',</span> <span class="pre">'completion_limit']</span></em><a class="headerlink" href="#challenges.admin.ChallengeAdmin.list_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="challenges.admin.ChallengeAdmin.media">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#challenges.admin.ChallengeAdmin.media" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.admin.ChallengeCompletionAdmin">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.admin.</span></span><span class="sig-name descname"><span class="pre">ChallengeCompletionAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/admin.html#ChallengeCompletionAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.admin.ChallengeCompletionAdmin" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.admin.ChallengeCompletionAdmin.list_display">
+<span class="sig-name descname"><span class="pre">list_display</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'challenge',</span> <span class="pre">'claimed',</span> <span class="pre">'can_be_claimed_in']</span></em><a class="headerlink" href="#challenges.admin.ChallengeCompletionAdmin.list_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="challenges.admin.ChallengeCompletionAdmin.media">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#challenges.admin.ChallengeCompletionAdmin.media" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.admin.TgChannelAdmin">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.admin.</span></span><span class="sig-name descname"><span class="pre">TgChannelAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/admin.html#TgChannelAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.admin.TgChannelAdmin" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="challenges.admin.TgChannelAdmin.media">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#challenges.admin.TgChannelAdmin.media" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-challenges.api">
+<span id="challenges-api-module"></span><h2>challenges.api module<a class="headerlink" href="#module-challenges.api" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="challenges.api.add_reward">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.api.</span></span><span class="sig-name descname"><span class="pre">add_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="accounts.html#accounts.models.User" title="accounts.models.User"><span class="pre">User</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#challenges.models.Challenge" title="challenges.models.Challenge"><span class="pre">Challenge</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_ch_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#challenges.models.ChallengeCompletion" title="challenges.models.ChallengeCompletion"><span class="pre">ChallengeCompletion</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/api.html#add_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.api.add_reward" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="challenges.api.challenge_info">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.api.</span></span><span class="sig-name descname"><span class="pre">challenge_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WSGIRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ASGIRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/api.html#challenge_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.api.challenge_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="challenges.api.challenges_complete">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.api.</span></span><span class="sig-name descname"><span class="pre">challenges_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WSGIRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ASGIRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/api.html#challenges_complete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.api.challenges_complete" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="challenges.api.challenges_list">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.api.</span></span><span class="sig-name descname"><span class="pre">challenges_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WSGIRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ASGIRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ChallengeFilterSchema,</span> <span class="pre">Query(annotation=ChallengeFilterSchema,</span> <span class="pre">required=True,</span> <span class="pre">json_schema_extra={})]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/api.html#challenges_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.api.challenges_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="challenges.api.completion_by_challenge_id_info">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.api.</span></span><span class="sig-name descname"><span class="pre">completion_by_challenge_id_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WSGIRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ASGIRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/api.html#completion_by_challenge_id_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.api.completion_by_challenge_id_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-challenges.apps">
+<span id="challenges-apps-module"></span><h2>challenges.apps module<a class="headerlink" href="#module-challenges.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.apps.ChallengesConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.apps.</span></span><span class="sig-name descname"><span class="pre">ChallengesConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/apps.html#ChallengesConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.apps.ChallengesConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.apps.ChallengesConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#challenges.apps.ChallengesConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.apps.ChallengesConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'challenges'</span></em><a class="headerlink" href="#challenges.apps.ChallengesConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-challenges.checker">
+<span id="challenges-checker-module"></span><h2>challenges.checker module<a class="headerlink" href="#module-challenges.checker" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.checker.Checker">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.checker.</span></span><span class="sig-name descname"><span class="pre">Checker</span></span><a class="reference internal" href="_modules/challenges/checker.html#Checker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.checker.Checker" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="challenges.checker.Checker.check_member">
+<span class="sig-name descname"><span class="pre">check_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/checker.html#Checker.check_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.checker.Checker.check_member" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="challenges.checker.Checker.req">
+<span class="sig-name descname"><span class="pre">req</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/checker.html#Checker.req"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.checker.Checker.req" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="challenges.checker.prepare_data">
+<span class="sig-prename descclassname"><span class="pre">challenges.checker.</span></span><span class="sig-name descname"><span class="pre">prepare_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/checker.html#prepare_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.checker.prepare_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-challenges.models">
+<span id="challenges-models-module"></span><h2>challenges.models module<a class="headerlink" href="#module-challenges.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.models.Challenge">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.models.</span></span><span class="sig-name descname"><span class="pre">Challenge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avatar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imitation_timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_user_language</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_user_status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redirect_link</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#Challenge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.Challenge" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="challenges.models.Challenge.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#challenges.models.Challenge.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="challenges.models.Challenge.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#challenges.models.Challenge.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.avatar">
+<span class="sig-name descname"><span class="pre">avatar</span></span><a class="headerlink" href="#challenges.models.Challenge.avatar" title="Link to this definition"></a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.button_text">
+<span class="sig-name descname"><span class="pre">button_text</span></span><a class="headerlink" href="#challenges.models.Challenge.button_text" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.challengecompletion_set">
+<span class="sig-name descname"><span class="pre">challengecompletion_set</span></span><a class="headerlink" href="#challenges.models.Challenge.challengecompletion_set" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#challenges.models.Challenge.channel" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.channel_id">
+<span class="sig-name descname"><span class="pre">channel_id</span></span><a class="headerlink" href="#challenges.models.Challenge.channel_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="challenges.models.Challenge.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#Challenge.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.Challenge.clean" title="Link to this definition"></a></dt>
+<dd><p>Hook for doing any extra model-wide validation after clean() has been
+called on every field by self.clean_fields. Any ValidationError raised
+by this method will not be associated with a particular field; it will
+have a special-case association with the field defined by NON_FIELD_ERRORS.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.completion_limit">
+<span class="sig-name descname"><span class="pre">completion_limit</span></span><a class="headerlink" href="#challenges.models.Challenge.completion_limit" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="challenges.models.Challenge.get_internal_type_display">
+<span class="sig-name descname"><span class="pre">get_internal_type_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">internal_type&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#challenges.models.Challenge.get_internal_type_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="challenges.models.Challenge.get_user_challenge_status">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_user_challenge_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="accounts.html#accounts.models.User" title="accounts.models.User"><span class="pre">User</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#Challenge.get_user_challenge_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.Challenge.get_user_challenge_status" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#challenges.models.Challenge.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.imitation_timer">
+<span class="sig-name descname"><span class="pre">imitation_timer</span></span><a class="headerlink" href="#challenges.models.Challenge.imitation_timer" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.internal_type">
+<span class="sig-name descname"><span class="pre">internal_type</span></span><a class="headerlink" href="#challenges.models.Challenge.internal_type" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#challenges.models.Challenge.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.redirect_link">
+<span class="sig-name descname"><span class="pre">redirect_link</span></span><a class="headerlink" href="#challenges.models.Challenge.redirect_link" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.reward">
+<span class="sig-name descname"><span class="pre">reward</span></span><a class="headerlink" href="#challenges.models.Challenge.reward" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.target_user_language">
+<span class="sig-name descname"><span class="pre">target_user_language</span></span><a class="headerlink" href="#challenges.models.Challenge.target_user_language" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.target_user_status">
+<span class="sig-name descname"><span class="pre">target_user_status</span></span><a class="headerlink" href="#challenges.models.Challenge.target_user_status" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.Challenge.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#challenges.models.Challenge.title" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.models.</span></span><span class="sig-name descname"><span class="pre">ChallengeCompletion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">claimed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">can_be_claimed_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#ChallengeCompletion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.ChallengeCompletion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.can_be_claimed_in">
+<span class="sig-name descname"><span class="pre">can_be_claimed_in</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.can_be_claimed_in" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.challenge">
+<span class="sig-name descname"><span class="pre">challenge</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.challenge" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.challenge_id">
+<span class="sig-name descname"><span class="pre">challenge_id</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.challenge_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.claimed">
+<span class="sig-name descname"><span class="pre">claimed</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.claimed" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#challenges.models.ChallengeCompletion.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.user" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeCompletion.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#challenges.models.ChallengeCompletion.user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.models.ChallengeTypes">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.models.</span></span><span class="sig-name descname"><span class="pre">ChallengeTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#ChallengeTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.ChallengeTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChoices</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeTypes.IMITATION">
+<span class="sig-name descname"><span class="pre">IMITATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Imitation'</span></em><a class="headerlink" href="#challenges.models.ChallengeTypes.IMITATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.ChallengeTypes.REAL">
+<span class="sig-name descname"><span class="pre">REAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Real'</span></em><a class="headerlink" href="#challenges.models.ChallengeTypes.REAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.models.CompletionTypes">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.models.</span></span><span class="sig-name descname"><span class="pre">CompletionTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#CompletionTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.CompletionTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChoices</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.CompletionTypes.CLAIMED">
+<span class="sig-name descname"><span class="pre">CLAIMED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Claimed'</span></em><a class="headerlink" href="#challenges.models.CompletionTypes.CLAIMED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.CompletionTypes.IN_PROGRESS">
+<span class="sig-name descname"><span class="pre">IN_PROGRESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'In</span> <span class="pre">Progress'</span></em><a class="headerlink" href="#challenges.models.CompletionTypes.IN_PROGRESS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.CompletionTypes.NOT_CLAIMED">
+<span class="sig-name descname"><span class="pre">NOT_CLAIMED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Not</span> <span class="pre">Claimed'</span></em><a class="headerlink" href="#challenges.models.CompletionTypes.NOT_CLAIMED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.CompletionTypes.NOT_STARTED">
+<span class="sig-name descname"><span class="pre">NOT_STARTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Not</span> <span class="pre">Started'</span></em><a class="headerlink" href="#challenges.models.CompletionTypes.NOT_STARTED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.models.TgChannel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.models.</span></span><span class="sig-name descname"><span class="pre">TgChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/models.html#TgChannel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.models.TgChannel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="challenges.models.TgChannel.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#challenges.models.TgChannel.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="challenges.models.TgChannel.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#challenges.models.TgChannel.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.TgChannel.challenge_set">
+<span class="sig-name descname"><span class="pre">challenge_set</span></span><a class="headerlink" href="#challenges.models.TgChannel.challenge_set" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.TgChannel.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#challenges.models.TgChannel.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.TgChannel.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#challenges.models.TgChannel.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.models.TgChannel.uri">
+<span class="sig-name descname"><span class="pre">uri</span></span><a class="headerlink" href="#challenges.models.TgChannel.uri" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-challenges.schemes">
+<span id="challenges-schemes-module"></span><h2>challenges.schemes module<a class="headerlink" href="#module-challenges.schemes" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">ChallengeCompletionSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="accounts.html#accounts.schemes.UserOut" title="accounts.schemes.UserOut"><span class="pre">UserOut</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#challenges.schemes.ChallengeSchema" title="challenges.schemes.ChallengeSchema"><span class="pre">ChallengeSchema</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">claimed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">can_be_claimed_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#ChallengeCompletionSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.can_be_claimed_in">
+<span class="sig-name descname"><span class="pre">can_be_claimed_in</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.can_be_claimed_in" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.challenge">
+<span class="sig-name descname"><span class="pre">challenge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#challenges.schemes.ChallengeSchema" title="challenges.schemes.ChallengeSchema"><span class="pre">ChallengeSchema</span></a></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.challenge" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.claimed">
+<span class="sig-name descname"><span class="pre">claimed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.claimed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'can_be_claimed_in':</span> <span class="pre">FieldInfo(annotation=Union[datetime,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'challenge':</span> <span class="pre">FieldInfo(annotation=ChallengeSchema,</span> <span class="pre">required=True),</span> <span class="pre">'claimed':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=True),</span> <span class="pre">'user':</span> <span class="pre">FieldInfo(annotation=UserOut,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeCompletionSchema.user">
+<span class="sig-name descname"><span class="pre">user</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="accounts.html#accounts.schemes.UserOut" title="accounts.schemes.UserOut"><span class="pre">UserOut</span></a></em><a class="headerlink" href="#challenges.schemes.ChallengeCompletionSchema.user" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">ChallengeFilterSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">internal_type:</span> <span class="pre">~typing.Annotated[list[str],</span> <span class="pre">~pydantic.functional_validators.BeforeValidator(func=~challenges.schemes.&lt;lambda&gt;,</span> <span class="pre">json_schema_input_type=PydanticUndefined)]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">target_user_language:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">target_user_status:</span> <span class="pre">bool</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">status:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#ChallengeFilterSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FilterSchema</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.custom_expression">
+<span class="sig-name descname"><span class="pre">custom_expression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Q</span></span></span><a class="reference internal" href="_modules/challenges/schemes.html#ChallengeFilterSchema.custom_expression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.custom_expression" title="Link to this definition"></a></dt>
+<dd><p>Implement this method to return a combination of filters that will be used</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.internal_type">
+<span class="sig-name descname"><span class="pre">internal_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;lambda&gt;,</span> <span class="pre">json_schema_input_type=PydanticUndefined)]</span> <span class="pre">|</span> <span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.internal_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'expression_connector':</span> <span class="pre">'AND',</span> <span class="pre">'from_attributes':</span> <span class="pre">True,</span> <span class="pre">'ignore_none':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'internal_type':</span> <span class="pre">FieldInfo(annotation=Union[Annotated[list[str],</span> <span class="pre">BeforeValidator],</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None,</span> <span class="pre">json_schema_extra={'q':</span> <span class="pre">'internal_type__in'}),</span> <span class="pre">'status':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'target_user_language':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'target_user_status':</span> <span class="pre">FieldInfo(annotation=Union[bool,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None)}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.status" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.target_user_language">
+<span class="sig-name descname"><span class="pre">target_user_language</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.target_user_language" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeFilterSchema.target_user_status">
+<span class="sig-name descname"><span class="pre">target_user_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeFilterSchema.target_user_status" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeListSchema">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">ChallengeListSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">challenge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#challenges.schemes.ChallengeSchema" title="challenges.schemes.ChallengeSchema"><span class="pre">ChallengeSchema</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#ChallengeListSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.ChallengeListSchema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeListSchema.challenge">
+<span class="sig-name descname"><span class="pre">challenge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#challenges.schemes.ChallengeSchema" title="challenges.schemes.ChallengeSchema"><span class="pre">ChallengeSchema</span></a></em><a class="headerlink" href="#challenges.schemes.ChallengeListSchema.challenge" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeListSchema.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeListSchema.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeListSchema.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeListSchema.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeListSchema.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'challenge':</span> <span class="pre">FieldInfo(annotation=ChallengeSchema,</span> <span class="pre">required=True),</span> <span class="pre">'status':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeListSchema.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeListSchema.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#challenges.schemes.ChallengeListSchema.status" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">ChallengeSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avatar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imitation_timer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">timedelta</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_user_language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_user_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#challenges.schemes.ChannelSchema" title="challenges.schemes.ChannelSchema"><span class="pre">ChannelSchema</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redirect_link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#ChallengeSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.ChallengeSchema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.avatar">
+<span class="sig-name descname"><span class="pre">avatar</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.avatar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.button_text">
+<span class="sig-name descname"><span class="pre">button_text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.button_text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#challenges.schemes.ChannelSchema" title="challenges.schemes.ChannelSchema"><span class="pre">ChannelSchema</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.channel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.completion_limit">
+<span class="sig-name descname"><span class="pre">completion_limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.completion_limit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.imitation_timer">
+<span class="sig-name descname"><span class="pre">imitation_timer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">timedelta</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.imitation_timer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.internal_type">
+<span class="sig-name descname"><span class="pre">internal_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.internal_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'avatar':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'button_text':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'channel':</span> <span class="pre">FieldInfo(annotation=Union[ChannelSchema,</span> <span class="pre">NoneType],</span> <span class="pre">required=True),</span> <span class="pre">'completion_limit':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True),</span> <span class="pre">'id':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True),</span> <span class="pre">'imitation_timer':</span> <span class="pre">FieldInfo(annotation=Union[timedelta,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'internal_type':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'redirect_link':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'reward':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True),</span> <span class="pre">'target_user_language':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'target_user_status':</span> <span class="pre">FieldInfo(annotation=Union[bool,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'title':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.redirect_link">
+<span class="sig-name descname"><span class="pre">redirect_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.redirect_link" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.reward">
+<span class="sig-name descname"><span class="pre">reward</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.reward" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.target_user_language">
+<span class="sig-name descname"><span class="pre">target_user_language</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.target_user_language" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.target_user_status">
+<span class="sig-name descname"><span class="pre">target_user_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.target_user_status" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChallengeSchema.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#challenges.schemes.ChallengeSchema.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.ChannelSchema">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">ChannelSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#ChannelSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.ChannelSchema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChannelSchema.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.ChannelSchema.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChannelSchema.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.ChannelSchema.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChannelSchema.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'uri':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#challenges.schemes.ChannelSchema.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.ChannelSchema.uri">
+<span class="sig-name descname"><span class="pre">uri</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#challenges.schemes.ChannelSchema.uri" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.CompletionSendOut">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">CompletionSendOut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">created</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">claim_prize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#CompletionSendOut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.CompletionSendOut" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.CompletionSendOut.claim_prize">
+<span class="sig-name descname"><span class="pre">claim_prize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.CompletionSendOut.claim_prize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.CompletionSendOut.created">
+<span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#challenges.schemes.CompletionSendOut.created" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.CompletionSendOut.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.CompletionSendOut.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.CompletionSendOut.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.CompletionSendOut.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.CompletionSendOut.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'claim_prize':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'created':</span> <span class="pre">FieldInfo(annotation=Union[bool,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None)}</span></em><a class="headerlink" href="#challenges.schemes.CompletionSendOut.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="challenges.schemes.DetailOut">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">challenges.schemes.</span></span><span class="sig-name descname"><span class="pre">DetailOut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/challenges/schemes.html#DetailOut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#challenges.schemes.DetailOut" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.DetailOut.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#challenges.schemes.DetailOut.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.DetailOut.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#challenges.schemes.DetailOut.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.DetailOut.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#challenges.schemes.DetailOut.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="challenges.schemes.DetailOut.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'detail':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#challenges.schemes.DetailOut.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-challenges.tests">
+<span id="challenges-tests-module"></span><h2>challenges.tests module<a class="headerlink" href="#module-challenges.tests" title="Link to this heading"></a></h2>
+</section>
+<section id="module-challenges">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-challenges" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="accounts.migrations.html" class="btn btn-neutral float-left" title="accounts.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="challenges.migrations.html" class="btn btn-neutral float-right" title="challenges.migrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

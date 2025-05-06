@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tasks.schemes &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tasks.schemes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tasks.schemes</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+<span class="kn">from</span> <span class="nn">ninja</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">FilterSchema</span>
+
+<span class="kn">from</span> <span class="nn">accounts.schemes</span> <span class="kn">import</span> <span class="n">UserOut</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Annotated</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BeforeValidator</span>
+<span class="kn">from</span> <span class="nn">ninja</span> <span class="kn">import</span> <span class="n">FilterSchema</span>
+
+<span class="kn">from</span> <span class="nn">tasks.models</span> <span class="kn">import</span> <span class="n">Task</span><span class="p">,</span> <span class="n">Completion</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="c1"># Splits comma-separated string into a list of items.</span>
+<span class="c1"># Strips whitespaces and trims leading/trailing commas</span>
+<span class="c1"># This annotation can be reused many times for different enums or plain strings</span>
+<span class="n">CommaList</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span>
+    <span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">],</span>
+    <span class="n">BeforeValidator</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="k">if</span> <span class="n">v</span><span class="p">]),</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="FileIn">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.FileIn">[docs]</a>
+<span class="k">class</span> <span class="nc">FileIn</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">file_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">completion_id</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="FileOutAWS">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.FileOutAWS">[docs]</a>
+<span class="k">class</span> <span class="nc">FileOutAWS</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">presigned_url</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">examples</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;https://test-oort-assets.s3.amazonaws.com/test&quot;</span><span class="p">])</span>
+    <span class="n">file_uuid</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">examples</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())])</span></div>
+
+
+
+<div class="viewcode-block" id="TaskFilterSchema">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.TaskFilterSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">TaskFilterSchema</span><span class="p">(</span><span class="n">FilterSchema</span><span class="p">):</span>
+    <span class="n">internal_type</span><span class="p">:</span> <span class="n">CommaList</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="s2">&quot;internal_type__in&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TaskOut">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.TaskOut">[docs]</a>
+<span class="k">class</span> <span class="nc">TaskOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">internal_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">photo</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">task_instruction</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">reward</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">audio_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">example</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">time_to_complete</span><span class="p">:</span> <span class="n">timedelta</span>
+    <span class="n">limit_completions</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">limit_file_size</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">limit_video_length</span><span class="p">:</span> <span class="n">timedelta</span>
+    <span class="n">limit_audio_length</span><span class="p">:</span> <span class="n">timedelta</span>
+    <span class="n">validation_percent</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">when_was_sent_to_validation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="ValidationListTaskOut">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.ValidationListTaskOut">[docs]</a>
+<span class="k">class</span> <span class="nc">ValidationListTaskOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">task</span><span class="p">:</span> <span class="n">TaskOut</span>
+    <span class="n">available</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="FileOut">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.FileOut">[docs]</a>
+<span class="k">class</span> <span class="nc">FileOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">original_file_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">file_uuid</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span>
+    <span class="n">file_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">upload_finished_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="CompletionFilterSchema">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionFilterSchema">[docs]</a>
+<span class="k">class</span> <span class="nc">CompletionFilterSchema</span><span class="p">(</span><span class="n">FilterSchema</span><span class="p">):</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">CommaList</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="s2">&quot;status__in&quot;</span><span class="p">)</span>
+    <span class="n">task_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="CompletionFilterSchema.custom_expression">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionFilterSchema.custom_expression">[docs]</a>
+    <span class="k">def</span> <span class="nf">custom_expression</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Q</span><span class="p">:</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">Q</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">:</span>
+            <span class="n">q</span> <span class="o">&amp;=</span> <span class="n">Q</span><span class="p">(</span><span class="n">status__in</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_type</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">q</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="CompletionStartIn">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionStartIn">[docs]</a>
+<span class="k">class</span> <span class="nc">CompletionStartIn</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span></div>
+
+    <span class="c1"># file_uuid: uuid.UUID</span>
+
+
+<div class="viewcode-block" id="CompletionSendIn">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionSendIn">[docs]</a>
+<span class="k">class</span> <span class="nc">CompletionSendIn</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">file_uuid</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span></div>
+
+
+
+<div class="viewcode-block" id="CompletionOut">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionOut">[docs]</a>
+<span class="k">class</span> <span class="nc">CompletionOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">user</span><span class="p">:</span> <span class="n">UserOut</span>
+    <span class="n">task</span><span class="p">:</span> <span class="n">TaskOut</span>
+    <span class="n">file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FileOut</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">completion_date_and_time</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span></div>
+
+
+
+<div class="viewcode-block" id="CompletionHistoryOut">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionHistoryOut">[docs]</a>
+<span class="k">class</span> <span class="nc">CompletionHistoryOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">completion</span><span class="p">:</span> <span class="n">CompletionOut</span>
+    <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+
+<div class="viewcode-block" id="CompletionValidationIn">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.CompletionValidationIn">[docs]</a>
+<span class="k">class</span> <span class="nc">CompletionValidationIn</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="DetailOut">
+<a class="viewcode-back" href="../../tasks.html#tasks.schemes.DetailOut">[docs]</a>
+<span class="k">class</span> <span class="nc">DetailOut</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
+    <span class="n">detail</span><span class="p">:</span> <span class="nb">str</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

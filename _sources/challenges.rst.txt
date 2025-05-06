@@ -1,0 +1,77 @@
+challenges package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   challenges.migrations
+
+Submodules
+----------
+
+challenges.admin module
+-----------------------
+
+.. automodule:: challenges.admin
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.api module
+---------------------
+
+.. automodule:: challenges.api
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.apps module
+----------------------
+
+.. automodule:: challenges.apps
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.checker module
+-------------------------
+
+.. automodule:: challenges.checker
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.models module
+------------------------
+
+.. automodule:: challenges.models
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.schemes module
+-------------------------
+
+.. automodule:: challenges.schemes
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+challenges.tests module
+-----------------------
+
+.. automodule:: challenges.tests
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: challenges
+   :members:
+   :show-inheritance:
+   :undoc-members:

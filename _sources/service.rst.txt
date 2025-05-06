@@ -1,0 +1,69 @@
+service package
+===============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   service.migrations
+
+Submodules
+----------
+
+service.admin module
+--------------------
+
+.. automodule:: service.admin
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+service.api module
+------------------
+
+.. automodule:: service.api
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+service.apps module
+-------------------
+
+.. automodule:: service.apps
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+service.models module
+---------------------
+
+.. automodule:: service.models
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+service.schemes module
+----------------------
+
+.. automodule:: service.schemes
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+service.tests module
+--------------------
+
+.. automodule:: service.tests
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: service
+   :members:
+   :show-inheritance:
+   :undoc-members:

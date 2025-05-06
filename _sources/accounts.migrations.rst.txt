@@ -1,0 +1,61 @@
+accounts.migrations package
+===========================
+
+Submodules
+----------
+
+accounts.migrations.0001\_initial module
+----------------------------------------
+
+.. automodule:: accounts.migrations.0001_initial
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.migrations.0002\_alter\_bonus\_user module
+---------------------------------------------------
+
+.. automodule:: accounts.migrations.0002_alter_bonus_user
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.migrations.0003\_user\_first\_login module
+---------------------------------------------------
+
+.. automodule:: accounts.migrations.0003_user_first_login
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.migrations.0004\_alter\_transaction\_type\_of\_deposit module
+----------------------------------------------------------------------
+
+.. automodule:: accounts.migrations.0004_alter_transaction_type_of_deposit
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.migrations.0005\_userprofile module
+--------------------------------------------
+
+.. automodule:: accounts.migrations.0005_userprofile
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+accounts.migrations.0006\_remove\_user\_tg\_username\_and\_more module
+----------------------------------------------------------------------
+
+.. automodule:: accounts.migrations.0006_remove_user_tg_username_and_more
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: accounts.migrations
+   :members:
+   :show-inheritance:
+   :undoc-members:

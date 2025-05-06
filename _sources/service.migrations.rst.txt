@@ -1,0 +1,21 @@
+service.migrations package
+==========================
+
+Submodules
+----------
+
+service.migrations.0001\_initial module
+---------------------------------------
+
+.. automodule:: service.migrations.0001_initial
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: service.migrations
+   :members:
+   :show-inheritance:
+   :undoc-members:

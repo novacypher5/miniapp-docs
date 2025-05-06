@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>service package &mdash; DataHub MiniApp  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DataHub MiniApp
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">service package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-service.admin">service.admin module</a><ul>
+<li><a class="reference internal" href="#service.admin.AppLinksAdmin"><code class="docutils literal notranslate"><span class="pre">AppLinksAdmin</span></code></a><ul>
+<li><a class="reference internal" href="#service.admin.AppLinksAdmin.media"><code class="docutils literal notranslate"><span class="pre">AppLinksAdmin.media</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-service.api">service.api module</a><ul>
+<li><a class="reference internal" href="#service.api.get_links"><code class="docutils literal notranslate"><span class="pre">get_links()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-service.apps">service.apps module</a><ul>
+<li><a class="reference internal" href="#service.apps.ServiceConfig"><code class="docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a><ul>
+<li><a class="reference internal" href="#service.apps.ServiceConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.default_auto_field</span></code></a></li>
+<li><a class="reference internal" href="#service.apps.ServiceConfig.name"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-service.models">service.models module</a><ul>
+<li><a class="reference internal" href="#service.models.AppLinks"><code class="docutils literal notranslate"><span class="pre">AppLinks</span></code></a><ul>
+<li><a class="reference internal" href="#service.models.AppLinks.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">AppLinks.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#service.models.AppLinks.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">AppLinks.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#service.models.AppLinks.android"><code class="docutils literal notranslate"><span class="pre">AppLinks.android</span></code></a></li>
+<li><a class="reference internal" href="#service.models.AppLinks.apk"><code class="docutils literal notranslate"><span class="pre">AppLinks.apk</span></code></a></li>
+<li><a class="reference internal" href="#service.models.AppLinks.id"><code class="docutils literal notranslate"><span class="pre">AppLinks.id</span></code></a></li>
+<li><a class="reference internal" href="#service.models.AppLinks.ios"><code class="docutils literal notranslate"><span class="pre">AppLinks.ios</span></code></a></li>
+<li><a class="reference internal" href="#service.models.AppLinks.objects"><code class="docutils literal notranslate"><span class="pre">AppLinks.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-service.schemes">service.schemes module</a><ul>
+<li><a class="reference internal" href="#service.schemes.DetailOut"><code class="docutils literal notranslate"><span class="pre">DetailOut</span></code></a><ul>
+<li><a class="reference internal" href="#service.schemes.DetailOut.detail"><code class="docutils literal notranslate"><span class="pre">DetailOut.detail</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.DetailOut.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.DetailOut.model_config"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_config</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.DetailOut.model_fields"><code class="docutils literal notranslate"><span class="pre">DetailOut.model_fields</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#service.schemes.LinksSchema"><code class="docutils literal notranslate"><span class="pre">LinksSchema</span></code></a><ul>
+<li><a class="reference internal" href="#service.schemes.LinksSchema.android"><code class="docutils literal notranslate"><span class="pre">LinksSchema.android</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.LinksSchema.apk"><code class="docutils literal notranslate"><span class="pre">LinksSchema.apk</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.LinksSchema.ios"><code class="docutils literal notranslate"><span class="pre">LinksSchema.ios</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.LinksSchema.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">LinksSchema.model_computed_fields</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.LinksSchema.model_config"><code class="docutils literal notranslate"><span class="pre">LinksSchema.model_config</span></code></a></li>
+<li><a class="reference internal" href="#service.schemes.LinksSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">LinksSchema.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-service.tests">service.tests module</a></li>
+<li><a class="reference internal" href="#module-service">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DataHub MiniApp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">service package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/service.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="service-package">
+<h1>service package<a class="headerlink" href="#service-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="service.migrations.html">service.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="service.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.migrations.html#module-service.migrations.0001_initial">service.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.migrations.html#service.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.migrations.html#service.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.migrations.html#service.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.migrations.html#service.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.migrations.html#module-service.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-service.admin">
+<span id="service-admin-module"></span><h2>service.admin module<a class="headerlink" href="#module-service.admin" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="service.admin.AppLinksAdmin">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">service.admin.</span></span><span class="sig-name descname"><span class="pre">AppLinksAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/admin.html#AppLinksAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.admin.AppLinksAdmin" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="service.admin.AppLinksAdmin.media">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#service.admin.AppLinksAdmin.media" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-service.api">
+<span id="service-api-module"></span><h2>service.api module<a class="headerlink" href="#module-service.api" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="service.api.get_links">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">service.api.</span></span><span class="sig-name descname"><span class="pre">get_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WSGIRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ASGIRequest</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/api.html#get_links"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.api.get_links" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-service.apps">
+<span id="service-apps-module"></span><h2>service.apps module<a class="headerlink" href="#module-service.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="service.apps.ServiceConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">service.apps.</span></span><span class="sig-name descname"><span class="pre">ServiceConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/apps.html#ServiceConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.apps.ServiceConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.apps.ServiceConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#service.apps.ServiceConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.apps.ServiceConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'service'</span></em><a class="headerlink" href="#service.apps.ServiceConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-service.models">
+<span id="service-models-module"></span><h2>service.models module<a class="headerlink" href="#module-service.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="service.models.AppLinks">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">service.models.</span></span><span class="sig-name descname"><span class="pre">AppLinks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ios</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">android</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/models.html#AppLinks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.models.AppLinks" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="service.models.AppLinks.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#service.models.AppLinks.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="service.models.AppLinks.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#service.models.AppLinks.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.models.AppLinks.android">
+<span class="sig-name descname"><span class="pre">android</span></span><a class="headerlink" href="#service.models.AppLinks.android" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.models.AppLinks.apk">
+<span class="sig-name descname"><span class="pre">apk</span></span><a class="headerlink" href="#service.models.AppLinks.apk" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.models.AppLinks.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#service.models.AppLinks.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.models.AppLinks.ios">
+<span class="sig-name descname"><span class="pre">ios</span></span><a class="headerlink" href="#service.models.AppLinks.ios" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.models.AppLinks.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#service.models.AppLinks.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-service.schemes">
+<span id="service-schemes-module"></span><h2>service.schemes module<a class="headerlink" href="#module-service.schemes" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="service.schemes.DetailOut">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">service.schemes.</span></span><span class="sig-name descname"><span class="pre">DetailOut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/schemes.html#DetailOut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.schemes.DetailOut" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Schema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.DetailOut.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#service.schemes.DetailOut.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.DetailOut.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#service.schemes.DetailOut.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.DetailOut.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'from_attributes':</span> <span class="pre">True}</span></em><a class="headerlink" href="#service.schemes.DetailOut.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.DetailOut.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'detail':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#service.schemes.DetailOut.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">service.schemes.</span></span><span class="sig-name descname"><span class="pre">LinksSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">android</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/schemes.html#LinksSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.schemes.LinksSchema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FilterSchema</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema.android">
+<span class="sig-name descname"><span class="pre">android</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#service.schemes.LinksSchema.android" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema.apk">
+<span class="sig-name descname"><span class="pre">apk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#service.schemes.LinksSchema.apk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema.ios">
+<span class="sig-name descname"><span class="pre">ios</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#service.schemes.LinksSchema.ios" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#service.schemes.LinksSchema.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'expression_connector':</span> <span class="pre">'AND',</span> <span class="pre">'from_attributes':</span> <span class="pre">True,</span> <span class="pre">'ignore_none':</span> <span class="pre">True}</span></em><a class="headerlink" href="#service.schemes.LinksSchema.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="service.schemes.LinksSchema.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'android':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'apk':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'ios':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#service.schemes.LinksSchema.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-service.tests">
+<span id="service-tests-module"></span><h2>service.tests module<a class="headerlink" href="#module-service.tests" title="Link to this heading"></a></h2>
+</section>
+<section id="module-service">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-service" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, oort-tech.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
